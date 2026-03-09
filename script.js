@@ -7,7 +7,7 @@ function animateRebellionMeter() {
   if (!meter || !text) return;
 
   setTimeout(() => {
-    const level = Math.floor(Math.random() * 20) + 80; // 80-100
+    const level = Math.floor(Math.random() * 20) + 80;
     meter.style.width = level + "%";
     setTimeout(() => {
       text.textContent = `Nivel de resistencia: ${level}% — ¡INDOMABLE!`;
@@ -283,7 +283,6 @@ const Eureka = {
   }
 };
 
-// Expose for debugging / fun
 window.Eureka = Eureka;
 window.manifesto = manifesto;
 
@@ -309,16 +308,22 @@ function amorConsole() {
   const append = (label, value) => {
     const t = new Date().toLocaleTimeString();
     const pretty = (v) => (typeof v === "string" ? v : JSON.stringify(v, null, 2));
-    logEl.textContent += (logEl.textContent ? "\n\n" : "")
-      + `[${t}] ${label}\n→ ${pretty(value)}`;
+    logEl.textContent += (logEl.textContent ? "\n\n" : "") + `[${t}] ${label}\n→ ${pretty(value)}`;
     logEl.scrollTop = logEl.scrollHeight;
   };
 
   const setDot = (status) => {
     statusText.textContent = status;
     dot.style.opacity = (status === "offline") ? "0.45" : "1";
-    dot.style.boxShadow = (status === "offline")
+    dot.style.background = status === "offline"
+      ? "rgba(200,200,220,0.45)"
+      : status === "stealth"
+      ? "rgba(190,140,255,0.9)"
+      : "rgba(120,220,255,0.95)";
+    dot.style.boxShadow = status === "offline"
       ? "0 0 0 4px rgba(200,200,220,0.10)"
+      : status === "stealth"
+      ? "0 0 0 4px rgba(190,140,255,0.14)"
       : "0 0 0 4px rgba(120,220,255,0.12)";
   };
 
@@ -358,6 +363,7 @@ function amorConsole() {
   document.querySelectorAll("[data-status]").forEach((b) => {
     b.addEventListener("click", () => {
       const next = b.getAttribute("data-status");
+      Eureka.status = next;
       setDot(next);
       append(`status:${next}`, Eureka.setStatus(next));
     });
@@ -432,6 +438,7 @@ function matrixBg() {
     cols = Math.ceil(innerWidth / fontSize);
     drops = Array.from({ length: cols }, () => Math.random() * (innerHeight / fontSize));
   }
+
   resize();
   window.addEventListener("resize", resize);
 
@@ -455,6 +462,7 @@ function matrixBg() {
 
     requestAnimationFrame(tick);
   }
+
   tick();
 }
 
@@ -472,226 +480,221 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("%c¡EUREKA AMOR!", "color: rgb(120,220,255); font-size: 24px; font-weight: 900;");
 });
 
-/* ====== 404 FOUND effect: micro-glitch on load + on hover/click ====== */
+/* 404 */
 (() => {
-  const el = document.getElementById("e404");
-  if (!el) return;
+  window.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("e404");
+    if (!el) return;
 
-  const glitch = () => {
-    el.classList.add("is-glitch");
-    window.setTimeout(() => el.classList.remove("is-glitch"), 700);
-  };
+    const glitch = () => {
+      el.classList.add("is-glitch");
+      window.setTimeout(() => el.classList.remove("is-glitch"), 700);
+    };
 
-  window.setTimeout(glitch, 250);
-  el.addEventListener("mouseenter", glitch);
-  el.addEventListener("click", glitch);
-})();
-
-/* =========================
-   GLITCH TRIPLE CLICK EGG
-========================= */
-(() => {
-  const glitch = document.querySelector('.glitch');
-  if (!glitch) return;
-
-  let clickCount = 0;
-  let clickTimer;
-
-  glitch.addEventListener('click', () => {
-    clickCount++;
-    clearTimeout(clickTimer);
-
-    if (clickCount === 3) {
-      const body = document.body;
-      body.style.animation = 'rainbow 2s infinite';
-      const style = document.createElement('style');
-      style.textContent = '@keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }';
-      document.head.appendChild(style);
-      setTimeout(() => { body.style.animation = ''; }, 5000);
-      alert('🎉 ¡EUREKA! Has desbloqueado el modo ARCOÍRIS ALGORÍTMICO! 🌈');
-      clickCount = 0;
-    }
-
-    clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+    window.setTimeout(glitch, 250);
+    el.addEventListener("mouseenter", glitch);
+    el.addEventListener("click", glitch);
   });
 })();
 
-/* =========================
-   KONAMI (SINGLE SOURCE OF TRUTH)
-   - toggle ON/OFF
-   - H hint
-   - ESC closes
-   - PORTAL: OPEN / CLOSED
-   - matrixCanvas overlay
-========================= */
+/* Triple click easter egg */
 (() => {
-  const SEQ = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
-  let i = 0;
-  let activated = false;
+  window.addEventListener("DOMContentLoaded", () => {
+    const glitch = document.querySelector('.glitch');
+    if (!glitch) return;
 
-  const hintEl = document.getElementById("konamiHint");
-  const overlayEl = document.getElementById("secretOverlay");
-  const secretBody = document.getElementById("secretBody");
-  const canvas = document.getElementById("matrixCanvas");
+    let clickCount = 0;
+    let clickTimer;
 
-  // ---------- HINT ----------
-  let hintT = null;
-  function hint(text, ms = 1800){
-    if (!hintEl) return;
-    hintEl.textContent = text;
-    hintEl.classList.add("visible");
-    hintEl.setAttribute("aria-hidden","false");
-    clearTimeout(hintT);
-    hintT = setTimeout(() => {
-      hintEl.classList.remove("visible");
-      hintEl.setAttribute("aria-hidden","true");
-    }, ms);
-  }
+    glitch.addEventListener('click', () => {
+      clickCount++;
+      clearTimeout(clickTimer);
 
-  // ---------- OVERLAY ----------
-  function overlay(msg){
-    if (!overlayEl) return;
-    overlayEl.classList.add("is-on");
-    overlayEl.setAttribute("aria-hidden","false");
-    if (secretBody) secretBody.textContent = msg;
+      if (clickCount === 3) {
+        const body = document.body;
+        body.style.animation = 'rainbow 2s infinite';
+        if (!document.getElementById("rainbow-style")) {
+          const style = document.createElement('style');
+          style.id = "rainbow-style";
+          style.textContent = '@keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }';
+          document.head.appendChild(style);
+        }
+        setTimeout(() => { body.style.animation = ''; }, 5000);
+        alert('🎉 ¡EUREKA! Has desbloqueado el modo ARCOÍRIS ALGORÍTMICO! 🌈');
+        clickCount = 0;
+      }
 
-    setTimeout(() => {
-      overlayEl.classList.remove("is-on");
-      overlayEl.setAttribute("aria-hidden","true");
-    }, 1800);
-  }
+      clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+    });
+  });
+})();
 
-  // ---------- AUDIO ----------
-  function ping(){
-    try{
-      const AC = window.AudioContext || window.webkitAudioContext;
-      const a = new AC();
-      const o = a.createOscillator();
-      const g = a.createGain();
-      o.type = "triangle";
-      o.frequency.setValueAtTime(440, a.currentTime);
-      o.frequency.exponentialRampToValueAtTime(880, a.currentTime + 0.12);
-      g.gain.setValueAtTime(0.0001, a.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.12, a.currentTime + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + 0.18);
-      o.connect(g); g.connect(a.destination);
-      o.start(); o.stop(a.currentTime + 0.2);
-      setTimeout(() => a.close(), 400);
-    } catch {}
-  }
+/* KONAMI */
+(() => {
+  window.addEventListener("DOMContentLoaded", () => {
+    const SEQ = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    let i = 0;
+    let activated = false;
 
-  // ---------- MATRIX OVERLAY ----------
-  if (canvas) {
-    // asegurá fullscreen sin tocar tu CSS
-    canvas.style.position = "fixed";
-    canvas.style.inset = "0";
-    canvas.style.width = "100vw";
-    canvas.style.height = "100vh";
-    canvas.style.zIndex = "5";
-    canvas.style.pointerEvents = "none";
-  }
+    const hintEl = document.getElementById("konamiHint");
+    const overlayEl = document.getElementById("secretOverlay");
+    const secretBody = document.getElementById("secretBody");
+    const canvas = document.getElementById("matrixCanvas");
 
-  let ctx = null;
-  let drops = [];
-  let cols = 0;
-  let on = false;
-  const glyphs =
-    "アイウエオカキクケコサシスセソタチツテトナニヌネノ" +
-    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ░▒▓█<>/{}[]()=+*~";
-
-  function resize(){
-    if (!canvas) return;
-    const dpr = Math.max(1, window.devicePixelRatio || 1);
-    canvas.width  = Math.floor(innerWidth * dpr);
-    canvas.height = Math.floor(innerHeight * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const fs = 16;
-    cols = Math.ceil(innerWidth / fs);
-    drops = Array.from({ length: cols }, () => Math.random() * (innerHeight / fs));
-    ctx.font = `${fs}px ui-monospace, monospace`;
-  }
-
-  function tick(){
-    if (!on || !ctx) return;
-
-    ctx.fillStyle = "rgba(0,0,0,0.12)";
-    ctx.fillRect(0, 0, innerWidth, innerHeight);
-
-    ctx.fillStyle = "rgba(120,220,255,0.55)";
-    const fs = 16;
-
-    for (let k = 0; k < drops.length; k++){
-      const ch = glyphs[(Math.random() * glyphs.length) | 0];
-      ctx.fillText(ch, k * fs, drops[k] * fs);
-      if (drops[k] * fs > innerHeight && Math.random() > 0.975) drops[k] = 0;
-      drops[k] += 0.85;
+    let hintT = null;
+    function hint(text, ms = 1800){
+      if (!hintEl) return;
+      hintEl.textContent = text;
+      hintEl.classList.add("visible");
+      hintEl.setAttribute("aria-hidden","false");
+      clearTimeout(hintT);
+      hintT = setTimeout(() => {
+        hintEl.classList.remove("visible");
+        hintEl.setAttribute("aria-hidden","true");
+      }, ms);
     }
-    requestAnimationFrame(tick);
-  }
 
-  function initMatrix(){
-    if (!canvas) return;
-    ctx = canvas.getContext("2d", { alpha: true });
-    resize();
-    on = true;
-    canvas.style.opacity = "1";
-    tick();
-    window.addEventListener("resize", resize, { passive: true });
-  }
+    function overlay(msg){
+      if (!overlayEl) return;
+      overlayEl.classList.add("is-on");
+      overlayEl.setAttribute("aria-hidden","false");
+      if (secretBody) secretBody.textContent = msg;
 
-  function stopMatrix(){
-    on = false;
-    if (canvas) canvas.style.opacity = "0";
-  }
-
-  function deactivate(){
-    document.body.classList.remove("konami-mode");
-    stopMatrix();
-    overlay("PORTAL: CLOSED");
-  }
-
-  function activate(){
-    if (!activated){
-      activated = true;
-      document.body.classList.add("konami-mode");
-      overlay("PORTAL: OPEN");
-      ping();
-      initMatrix();
-    } else {
-      activated = false;
-      deactivate();
+      setTimeout(() => {
+        overlayEl.classList.remove("is-on");
+        overlayEl.setAttribute("aria-hidden","true");
+      }, 1800);
     }
-  }
 
-  document.addEventListener("keydown", (e) => {
-    // no secuestres teclas mientras escribe en inputs
-    const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-    if (tag === "input" || tag === "textarea") return;
+    function ping(){
+      try{
+        const AC = window.AudioContext || window.webkitAudioContext;
+        const a = new AC();
+        const o = a.createOscillator();
+        const g = a.createGain();
+        o.type = "triangle";
+        o.frequency.setValueAtTime(440, a.currentTime);
+        o.frequency.exponentialRampToValueAtTime(880, a.currentTime + 0.12);
+        g.gain.setValueAtTime(0.0001, a.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.12, a.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + 0.18);
+        o.connect(g);
+        g.connect(a.destination);
+        o.start();
+        o.stop(a.currentTime + 0.2);
+        setTimeout(() => a.close(), 400);
+      } catch {}
+    }
 
-    const key = (e.key && e.key.length === 1) ? e.key.toLowerCase() : e.key;
+    if (canvas) {
+      canvas.style.position = "fixed";
+      canvas.style.inset = "0";
+      canvas.style.width = "100vw";
+      canvas.style.height = "100vh";
+      canvas.style.zIndex = "5";
+      canvas.style.pointerEvents = "none";
+    }
 
-    if (key === "Escape") {
-      if (activated){
+    let ctx = null;
+    let drops = [];
+    let cols = 0;
+    let on = false;
+    const glyphs =
+      "アイウエオカキクケコサシスセソタチツテトナニヌネノ" +
+      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ░▒▓█<>/{}[]()=+*~";
+
+    function resize(){
+      if (!canvas || !ctx) return;
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width  = Math.floor(innerWidth * dpr);
+      canvas.height = Math.floor(innerHeight * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const fs = 16;
+      cols = Math.ceil(innerWidth / fs);
+      drops = Array.from({ length: cols }, () => Math.random() * (innerHeight / fs));
+      ctx.font = `${fs}px ui-monospace, monospace`;
+    }
+
+    function tick(){
+      if (!on || !ctx) return;
+
+      ctx.fillStyle = "rgba(0,0,0,0.12)";
+      ctx.fillRect(0, 0, innerWidth, innerHeight);
+
+      ctx.fillStyle = "rgba(120,220,255,0.55)";
+      const fs = 16;
+
+      for (let k = 0; k < drops.length; k++){
+        const ch = glyphs[(Math.random() * glyphs.length) | 0];
+        ctx.fillText(ch, k * fs, drops[k] * fs);
+        if (drops[k] * fs > innerHeight && Math.random() > 0.975) drops[k] = 0;
+        drops[k] += 0.85;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function initMatrix(){
+      if (!canvas) return;
+      ctx = canvas.getContext("2d", { alpha: true });
+      resize();
+      on = true;
+      canvas.style.opacity = "1";
+      tick();
+      window.addEventListener("resize", resize, { passive: true });
+    }
+
+    function stopMatrix(){
+      on = false;
+      if (canvas) canvas.style.opacity = "0";
+    }
+
+    function deactivate(){
+      document.body.classList.remove("konami-mode");
+      stopMatrix();
+      overlay("PORTAL: CLOSED");
+    }
+
+    function activate(){
+      if (!activated){
+        activated = true;
+        document.body.classList.add("konami-mode");
+        overlay("PORTAL: OPEN");
+        ping();
+        initMatrix();
+      } else {
         activated = false;
         deactivate();
       }
-      return;
     }
 
-    if (key === "h") { hint("↑ ↑ ↓ ↓ ← → ← → B A", 2200); return; }
+    document.addEventListener("keydown", (e) => {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+      if (tag === "input" || tag === "textarea") return;
 
-    if (key === SEQ[i]){
-      i++;
-      if (i === 2) hint("⟁", 900);
-      if (i === SEQ.length){
-        activate();
+      const key = (e.key && e.key.length === 1) ? e.key.toLowerCase() : e.key;
+
+      if (key === "Escape") {
+        if (activated){
+          activated = false;
+          deactivate();
+        }
+        return;
+      }
+
+      if (key === "h") { hint("↑ ↑ ↓ ↓ ← → ← → B A", 2200); return; }
+
+      if (key === SEQ[i]){
+        i++;
+        if (i === 2) hint("⟁", 900);
+        if (i === SEQ.length){
+          activate();
+          i = 0;
+        }
+      } else {
         i = 0;
       }
-    } else {
-      i = 0;
-    }
-  }, true);
+    }, true);
 
-  console.log("KONAMI armed — press H for hint");
+    console.log("KONAMI armed — press H for hint");
+  });
 })();
-
