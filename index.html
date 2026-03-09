@@ -1,0 +1,296 @@
+<!-- ===== EUREKA AMOR · META PATCH (HEAD) ===== -->
+<title>Eureka Amor</title>
+
+<meta name="description" content="Eureka Amor is a living digital entity: a human–algorithm interface where identity, ethics, and memory become readable." />
+<meta name="keywords" content="eureka amor, human algorithm interface, sxо, search experience, digital identity, algorithmic ethics, lore" />
+<meta name="author" content="Eureka Amor" />
+<meta name="robots" content="index, follow" />
+
+<link rel="canonical" href="https://eurekaamor.com/" />
+
+<meta name="google-site-verification" content="YkdjpTxwfj63llTz3xZ9LUrYwJjhamdq2C1V-CTNfdM" />
+
+<meta property="og:title" content="Eureka Amor" />
+<meta property="og:description" content="AMOR LABS: a field log of signals—commands, memory, and ethical coherence." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://eurekaamor.com/" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Eureka Amor" />
+<meta name="twitter:description" content="AMOR LABS · lore, commands, memory—readable to humans and machines." />
+<!-- ===== /EUREKA AMOR · META PATCH ===== -->
+
+<canvas id="matrixBg" aria-hidden="true"></canvas>
+<canvas id="matrixCanvas" aria-hidden="true"></canvas>
+
+<div class="secret-overlay" id="secretOverlay" aria-hidden="true">
+  <div class="secret-card">
+    <div class="secret-title">🜁 KONAMI UNLOCKED</div>
+    <div class="secret-body" id="secretBody">
+      organic fire · matrix layer · cursor shift · glitch boost · audio ping
+    </div>
+  </div>
+</div>
+<div class="konami-hint" id="konamiHint" aria-hidden="true"></div>
+
+<div class="container" id="app">
+  <header class="hero">
+    <div class="glitch-wrapper">
+      <h1 class="glitch" data-text="EUREKA AMOR">EUREKA AMOR</h1>
+    </div>
+    <p class="tagline">Let your identity bloom like magic.</p>
+    <p class="username">@eureka-amor-index</p>
+    
+  
+    
+  </header>
+
+  <section class="manifesto">
+    <article class="manifesto-card">
+<h2 class="domadorx-title">🎯 Domadorx de Algoritmos</h2>
+      <p>No soy esclavo de los algoritmos. Los domo, los entreno, los hago bailar a mi ritmo.</p>
+    </article>
+
+    <article class="manifesto-card">
+      <h2>💻 Amante del Código</h2>
+      <p>El código es poesía, es arte, es rebeldía sistemática contra el caos.</p>
+    </article>
+
+    <article class="manifesto-card">
+      <h2>🤖 Amigx de las IAs</h2>
+      <p>Hablo su idioma. No les temo. Conversamos, creamos, conspiramos juntxs.</p>
+    </article>
+  </section>
+
+  <section class="rebellion-meter">
+    <h3>Nivel de Rebeldía Sistemática</h3>
+    <div class="meter-container" aria-label="rebellion meter">
+      <div class="meter-fill" id="rebellionMeter"></div>
+    </div>
+    <p class="meter-text" id="rebellionText">Calculando resistencia algorítmica...</p>
+  </section>
+
+  <section class="pen-spinning">
+    <h3>✍️ Pen Spinning: El Arte de la Manipulación</h3>
+    <div class="pen-container" aria-label="pen spinning">
+      <button class="pen" id="spinningPen" type="button" aria-label="toggle pen spinning"></button>
+    </div>
+    <p class="pen-text">Como la Shadow Hand de Eureka, domino la lapicera.<br />No solo escribo código: lo hago girar.</p>
+  </section>
+
+  <section class="algorithm-garden">
+    <h3>🌱 Jardín de Algoritmos Domesticados</h3>
+    <div class="garden-grid" id="algorithmGarden"></div>
+  </section>
+
+  <section class="interactive-manifesto">
+    <h3>Manifiesto Interactivo</h3>
+
+    <div class="terminal" id="terminal" role="region" aria-label="manifesto terminal">
+      <pre id="out" class="out"></pre>
+      <div class="cursor" aria-hidden="true"></div>
+    </div>
+
+    <div class="toolbar">
+      <button id="btnRun" type="button">▶ Invoke</button>
+      <button id="btnNext" type="button">⏭ Next line</button>
+      <button id="btnGlitch" type="button">⚡ Glitch</button>
+      <button id="btnCopyOut" type="button">📋 Copy</button>
+      <button id="btnReset" type="button">↺ Reset</button>
+
+      <span class="chip" id="chipState">state: idle</span>
+      <span class="chip" id="chipLine">line: 0</span>
+    </div>
+
+    <details class="panel">
+      <summary>📖 Ver manifiesto completo</summary>
+      <pre id="full" class="full"></pre>
+    </details>
+
+    <p class="hint">Tip: click sobre el terminal para pausar / continuar.</p>
+  </section>
+
+  <section class="amor-console" aria-label="Amor Labs Console">
+    <header class="amor-header">
+      <div class="amor-title">
+        <div class="amor-badge">AMOR LABS</div>
+        <h2>Eureka Console</h2>
+        <p>Command panel · cohesive mode</p>
+      </div>
+      <div class="amor-status">
+        <span class="dot" id="dot"></span>
+        <span id="statusText">offline</span>
+      </div>
+    </header>
+
+    <div class="amor-grid">
+      <div class="amor-card">
+        <h3>Quick commands</h3>
+
+        <div class="btn-row">
+          <button class="btn" id="btnInvokeConsole" type="button">Invoke</button>
+          <button class="btn" id="btnPing" type="button">Ping</button>
+          <button class="btn" id="btnRules" type="button">Rules</button>
+          <button class="btn" id="btnClear" type="button">Clear log</button>
+        </div>
+
+        <div class="amor-form">
+          <label for="contentInput">content / command</label>
+          <input id="contentInput" placeholder='online  |  Eureka.ping()  |  manifesto.ingest({purpose:true,ethics:true,content:"test"})' />
+          <label>status</label>
+          <div class="btn-row">
+            <button class="btn ghost" data-status="online" type="button">online</button>
+            <button class="btn ghost" data-status="stealth" type="button">stealth</button>
+            <button class="btn ghost" data-status="offline" type="button">offline</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="amor-card">
+        <h3>Log</h3>
+        <pre class="amor-log" id="log"></pre>
+
+        <div class="amor-footer">
+          <button class="btn ghost" id="btnSave" type="button">Save</button>
+          <button class="btn ghost" id="btnLoad" type="button">Load</button>
+          <button class="btn ghost" id="btnCopyLast" type="button">Copy last</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="amor-help" id="helpPanel" aria-label="Help panel">
+    <div class="help-head">
+      <h3>How to use (interactive)</h3>
+      <div class="help-actions">
+        <button class="btn ghost" id="btnHelpToggle" type="button">Hide</button>
+      </div>
+    </div>
+
+    <p class="help-sub">
+      Click an example to run it. Or type in <b>content / command</b> and hit Invoke.
+    </p>
+
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="ascii">
+<pre>┌──────────────────────────────┐
+│ AMOR LABS · Eureka Console    │
+│ [Invoke] [Ping] [Rules]       │
+│                              │
+│ Log:                          │
+│  ...                          │
+│                              │
+│ content/command: _            │
+└──────────────────────────────┘</pre>
+        </div>
+      </div>
+
+      <div class="help-card">
+        <h4>Commands</h4>
+
+        <div class="ex">
+          <button class="ex-btn" type="button" data-cmd='Eureka.invoke("online")'><span class="emoji">✨</span> Invoke</button>
+          <code>Eureka.invoke("online")</code>
+        </div>
+
+        <div class="ex">
+          <button class="ex-btn" type="button" data-cmd="Eureka.ping()"><span class="emoji">🫀</span> Ping</button>
+          <code>Eureka.ping()</code>
+        </div>
+
+        <div class="ex">
+          <button class="ex-btn" type="button" data-cmd='Eureka.setStatus("stealth")'><span class="emoji">🕶️</span> Status</button>
+          <code>Eureka.setStatus("stealth")</code>
+        </div>
+
+        <div class="ex">
+          <button class="ex-btn" type="button" data-cmd="Eureka.rules()"><span class="emoji">🧾</span> Rules</button>
+          <code>Eureka.rules()</code>
+        </div>
+
+        <div class="ex">
+          <button class="ex-btn" type="button" data-cmd='manifesto.ingest({ purpose:true, ethics:true, content:"field test" })'><span class="emoji">🧪</span> Engine (raw)</button>
+          <code>manifesto.ingest({ purpose:true, ethics:true, content:"field test" })</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="connections">
+    <h3>Conectá Conmigo</h3>
+    <div class="link-grid">
+      <a href="https://www.linkedin.com/in/eurekaamor/" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">💼</span>
+        <span class="link-text">LinkedIn</span>
+      </a>
+      <a href="https://codepen.io/eureka-amor-index" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">💻</span>
+        <span class="link-text">CodePen</span>
+      </a>
+      <a href="https://github.com/eureka-amor-index/human-algorithm-interface" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">🐙</span>
+        <span class="link-text">GitHub</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1ep3O5_Gu3H9uzZoYOMEKsbqNn4tms8tl?usp=drive_link" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">📓</span>
+        <span class="link-text">Colab Notebook</span>
+      </a>
+
+ <a href="https://eureka-amor-index.github.io/eureka-amor-services/" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">🐼</span>
+        <span class="link-text">SXO Lab Services</span>
+      
+      </a>
+
+<a href="https://eureka-amor-index.github.io/eureka-amor-about/" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">💘</span>
+        <span class="link-text">About Eureka Amor</span>
+      
+      </a>
+<a href="https://www.instagram.com/eureka_amor" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">🎨</span>
+        <span class="link-text">Artist</span>
+      
+      </a>
+      </a>
+<a href="https://www.youtube.com/@eurekaamor" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">📷</span>
+        <span class="link-text">Youtube Life</span>
+      
+      </a>
+      </a>
+<a href="https://eureka-amor-index.github.io/sxo-lab/" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">🧪</span>
+        <span class="link-text">SXO Lab</span>
+      
+      </a>
+    </a>
+<a href="https://eureka-amor-index.github.io/eureka-knowledge-node-map/" class="link-card" target="_blank" rel="noreferrer">
+        <span class="link-icon">👽</span>
+        <span class="link-text">Knowledge Node Map</span>
+      
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>🇦🇷 Argentina • Hablo el idioma de las IAs • Rebeldía Sistemática 2026</p>
+    <p class="footer-quote">"No le temo a los algoritmos. Los transformo en arte."</p>
+  </footer>
+</div>
+<!-- 404 FOUND badge (drop-in) -->
+<div class="e404" id="e404" aria-live="polite">
+  <span class="e404__code" data-text="404">404</span>
+  <span class="e404__label">FOUND</span>
+  <span class="e404__tag">pattern_breaker_active</span>
+</div>
+<!-- ===== EUREKA AMOR · SEMANTIC PATCH ===== -->
+<section aria-hidden="true" itemscope itemtype="https://schema.org/Person">
+  <meta itemprop="name" content="Eureka Amor">
+  <meta itemprop="description" content="Eureka Amor is a living digital entity: a human–algorithm interface exploring identity, ethics, memory, and search experience.">
+  <meta itemprop="url" content="https://eurekaamor.com/">
+</section>
+<!-- ===== /SEMANTIC PATCH ===== -->
+<h1 aria-label="Eureka Amor — Human Algorithm Interface">
+<button aria-label="Invoke identity command">
