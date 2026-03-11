@@ -213,7 +213,7 @@ function manifestoTerminal() {
 }
 
 /* -----------------------------
-   5) Amor Labs engine + console
+   5) Amor Labs engine + console v2
 ------------------------------ */
 class AlgorithmTamer {
   constructor(identity = "Eureka Amor"){
@@ -222,11 +222,13 @@ class AlgorithmTamer {
     this.mode = "cohesive";
     this.rule = "ethics_over_noise";
   }
+
   ingest(signal){
     if(!signal?.purpose) return "DROP: no purpose";
-    if(!signal?.ethics)  return "DROP: no ethics";
+    if(!signal?.ethics) return "DROP: no ethics";
     return this.transmute(signal);
   }
+
   transmute(signal){
     return `PERSIST(${this.identity} · ${this.core} + ${signal.content})`;
   }
@@ -238,19 +240,42 @@ const Eureka = {
   manifesto,
   status: "offline",
   _journal: [],
-  invoke(content="online", opts={purpose:true, ethics:true}){
+
+  invoke(content = "online", opts = { purpose:true, ethics:true }){
     const signal = { ...opts, content };
     const out = this.manifesto.ingest(signal);
-    this._journal.push({ t:new Date().toISOString(), out, signal });
+    this._journal.push({
+      t: new Date().toISOString(),
+      type: "invoke",
+      input: content,
+      out,
+      signal
+    });
     return out;
   },
+
   setStatus(next){
     this.status = next;
-    return this.invoke(`status=${next}`);
+    const out = this.invoke(`status=${next}`);
+    this._journal.push({
+      t: new Date().toISOString(),
+      type: "status",
+      input: next,
+      out
+    });
+    return out;
   },
+
   ping(){
-    return this.invoke(`ping@${new Date().toISOString()}`);
+    const out = this.invoke(`ping@${new Date().toISOString()}`);
+    this._journal.push({
+      t: new Date().toISOString(),
+      type: "ping",
+      out
+    });
+    return out;
   },
+
   rules(){
     return {
       identity: this.manifesto.identity,
@@ -259,26 +284,38 @@ const Eureka = {
       rule: this.manifesto.rule
     };
   },
-  clear(){ this._journal = []; return "LOG CLEARED"; },
-  last(){ return this._journal.at(-1)?.out ?? ""; },
-  save(key="eureka_manifesto"){
+
+  clear(){
+    this._journal = [];
+    return "LOG CLEARED";
+  },
+
+  last(){
+    return this._journal.at(-1)?.out ?? "";
+  },
+
+  save(key = "eureka_console_state"){
     localStorage.setItem(key, JSON.stringify({
-      status:this.status,
-      rules:this.rules(),
-      journal:this._journal
+      status: this.status,
+      rules: this.rules(),
+      journal: this._journal
     }));
     return `SAVED: ${key}`;
   },
-  load(key="eureka_manifesto"){
+
+  load(key = "eureka_console_state"){
     const raw = localStorage.getItem(key);
-    if(!raw) return `NO DATA: ${key}`;
+    if (!raw) return `NO DATA: ${key}`;
+
     const data = JSON.parse(raw);
-    if(data?.rules?.identity) this.manifesto.identity = data.rules.identity;
-    if(data?.rules?.core) this.manifesto.core = data.rules.core;
-    if(data?.rules?.mode) this.manifesto.mode = data.rules.mode;
-    if(data?.rules?.rule) this.manifesto.rule = data.rules.rule;
-    if(data?.status) this.status = data.status;
-    if(Array.isArray(data?.journal)) this._journal = data.journal;
+
+    if (data?.rules?.identity) this.manifesto.identity = data.rules.identity;
+    if (data?.rules?.core) this.manifesto.core = data.rules.core;
+    if (data?.rules?.mode) this.manifesto.mode = data.rules.mode;
+    if (data?.rules?.rule) this.manifesto.rule = data.rules.rule;
+    if (data?.status) this.status = data.status;
+    if (Array.isArray(data?.journal)) this._journal = data.journal;
+
     return `LOADED: ${key}`;
   }
 };
@@ -287,127 +324,275 @@ window.Eureka = Eureka;
 window.manifesto = manifesto;
 
 function amorConsole() {
+  const form = document.getElementById("consoleForm");
   const logEl = document.getElementById("log");
-  const contentInput = document.getElementById("contentInput");
+  const input = document.getElementById("contentInput");
   const statusText = document.getElementById("statusText");
   const dot = document.getElementById("dot");
 
-  const btnInvoke = document.getElementById("btnInvokeConsole");
-  const btnPing = document.getElementById("btnPing");
-  const btnRules = document.getElementById("btnRules");
-  const btnClear = document.getElementById("btnClear");
   const btnSave = document.getElementById("btnSave");
   const btnLoad = document.getElementById("btnLoad");
   const btnCopyLast = document.getElementById("btnCopyLast");
-
-  const helpPanel = document.getElementById("helpPanel");
   const btnHelpToggle = document.getElementById("btnHelpToggle");
+  const helpPanel = document.getElementById("helpPanel");
 
-  if (!logEl || !contentInput) return;
+  if (!form || !logEl || !input || !statusText || !dot) return;
 
-  const append = (label, value) => {
-    const t = new Date().toLocaleTimeString();
-    const pretty = (v) => (typeof v === "string" ? v : JSON.stringify(v, null, 2));
-    logEl.textContent += (logEl.textContent ? "\n\n" : "") + `[${t}] ${label}\n→ ${pretty(value)}`;
+  const responses = {
+    help: `
+Available commands:
+... about
+... services
+... entity
+... lab
+... work
+... contact
+... ping
+... rules
+... clear
+... save
+... load
+... online
+... stealth
+... offline
+    `,
+
+    about: `
+Eureka Amor is a search experience strategist, creative technologist, and digital artist.
+This interface is part signal archive, part identity ritual, part human-algorithm portal.
+    `,
+
+    services: `
+Services:
+... Search Experience Optimization
+... Entity Building
+... Content Strategy
+... Technical SEO Thinking
+... AI Visibility + Digital Identity Systems
+    `,
+
+    entity: `
+Entity building is not just visibility.
+It is coherence across search, structure, authorship, references, memory, and recognizability.
+    `,
+
+    lab: `
+SXO Lab is a living experiment.
+Search behavior, interface design, poetic systems, and algorithmic identity converge here.
+    `,
+
+    work: `
+Current territories:
+... strategy
+... search systems
+... experimentation
+... digital identity
+... human algorithm interface
+    `,
+
+    contact: `
+Find Eureka through the site links, LinkedIn, GitHub, Instagram, YouTube, and the wider SXO ecosystem.
+    `
+  };
+
+  function formatMultiline(text) {
+    return String(text).trim().replace(/\n/g, "<br>");
+  }
+
+  function appendLine(promptText, text, type = "system-line") {
+    const line = document.createElement("div");
+    line.className = `line ${type}`;
+
+    const prompt = document.createElement("span");
+    prompt.className = "prompt";
+    prompt.textContent = promptText;
+
+    const content = document.createElement("span");
+    content.className = "text";
+    content.innerHTML = formatMultiline(text);
+
+    line.appendChild(prompt);
+    line.appendChild(content);
+    logEl.appendChild(line);
     logEl.scrollTop = logEl.scrollHeight;
-  };
+  }
 
-  const setDot = (status) => {
+  function setDot(status) {
     statusText.textContent = status;
-    dot.style.opacity = (status === "offline") ? "0.45" : "1";
-    dot.style.background = status === "offline"
-      ? "rgba(200,200,220,0.45)"
-      : status === "stealth"
-      ? "rgba(190,140,255,0.9)"
-      : "rgba(120,220,255,0.95)";
-    dot.style.boxShadow = status === "offline"
-      ? "0 0 0 4px rgba(200,200,220,0.10)"
-      : status === "stealth"
-      ? "0 0 0 4px rgba(190,140,255,0.14)"
-      : "0 0 0 4px rgba(120,220,255,0.12)";
-  };
+    dot.style.opacity = status === "offline" ? "0.45" : "1";
+    dot.style.background =
+      status === "offline"
+        ? "rgba(200,200,220,0.45)"
+        : status === "stealth"
+        ? "rgba(190,140,255,0.9)"
+        : "rgba(120,220,255,0.95)";
 
-  function runInput(raw) {
-    const v = (raw || "").trim();
-    if (!v) return null;
+    dot.style.boxShadow =
+      status === "offline"
+        ? "0 0 0 4px rgba(200,200,220,0.10)"
+        : status === "stealth"
+        ? "0 0 0 4px rgba(190,140,255,0.14)"
+        : "0 0 0 4px rgba(120,220,255,0.12)";
+  }
 
-    const isCmd = /^(\s*)(Eureka\.|manifesto\.)/.test(v);
+  function normalizeInput(raw) {
+    const value = (raw || "").trim();
 
-    if (isCmd) {
-      return Function("Eureka","manifesto", `"use strict"; return (${v});`)(Eureka, manifesto);
+    if (!value) return "";
+
+    const lower = value.toLowerCase();
+
+    if (lower === "eureka.ping()") return "ping";
+    if (lower === "eureka.rules()") return "rules";
+    if (lower === 'eureka.invoke("online")') return "online";
+    if (lower === 'eureka.setstatus("online")') return "online";
+    if (lower === 'eureka.setstatus("stealth")') return "stealth";
+    if (lower === 'eureka.setstatus("offline")') return "offline";
+
+    if (lower.startsWith("manifesto.ingest(")) return "raw-manifesto";
+
+    return lower;
+  }
+
+  function runCommand(rawValue) {
+    const original = (rawValue || "").trim();
+    const value = normalizeInput(original);
+
+    if (!value) return;
+
+    appendLine("visitor@lab:~$", original, "user-line");
+
+    if (value === "clear") {
+      logEl.innerHTML = "";
+      Eureka.clear();
+      appendLine("system@eureka:~$", "Console cleared. Type <strong>help</strong> to continue.");
+      return;
     }
 
-    return Eureka.invoke(v);
+    if (value === "save") {
+      appendLine("system@eureka:~$", Eureka.save());
+      return;
+    }
+
+    if (value === "load") {
+      appendLine("system@eureka:~$", Eureka.load());
+      setDot(Eureka.status);
+      return;
+    }
+
+    if (value === "ping") {
+      appendLine("system@eureka:~$", Eureka.ping());
+      return;
+    }
+
+    if (value === "rules") {
+      const rules = Eureka.rules();
+      appendLine(
+        "system@eureka:~$",
+        `
+identity ... ${rules.identity}
+core ... ${rules.core}
+mode ... ${rules.mode}
+rule ... ${rules.rule}
+        `
+      );
+      return;
+    }
+
+    if (value === "online" || value === "stealth" || value === "offline") {
+      const out = Eureka.setStatus(value);
+      setDot(value);
+      appendLine("system@eureka:~$", out);
+      return;
+    }
+
+    if (value === "raw-manifesto") {
+      const out = manifesto.ingest({ purpose:true, ethics:true, content:"field test" });
+      appendLine("system@eureka:~$", out);
+      return;
+    }
+
+    if (responses[value]) {
+      appendLine("system@eureka:~$", responses[value]);
+      return;
+    }
+
+    const out = Eureka.invoke(original);
+    appendLine(
+      "system@eureka:~$",
+      `
+Signal received.
+${out}
+
+Unknown command? Try <strong>help</strong>.
+      `
+    );
   }
 
   setDot(Eureka.status);
-  append("boot", `identity=${Eureka.rules().identity} · mode=${Eureka.rules().mode}`);
+  logEl.innerHTML = "";
+  appendLine(
+    "system@eureka:~$",
+    "Console online. Type <strong>help</strong> to explore the interface."
+  );
 
-  btnInvoke?.addEventListener("click", () => {
-    try {
-      const out = runInput(contentInput.value || "online");
-      append("invoke", out);
-    } catch (e) {
-      append("error", e?.message || String(e));
-    }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    runCommand(input.value);
+    input.value = "";
   });
 
-  btnPing?.addEventListener("click", () => append("ping", Eureka.ping()));
-  btnRules?.addEventListener("click", () => append("rules", Eureka.rules()));
-
-  btnClear?.addEventListener("click", () => {
-    logEl.textContent = "";
-    append("clear", Eureka.clear());
-  });
-
-  document.querySelectorAll("[data-status]").forEach((b) => {
-    b.addEventListener("click", () => {
-      const next = b.getAttribute("data-status");
-      Eureka.status = next;
-      setDot(next);
-      append(`status:${next}`, Eureka.setStatus(next));
+  document.querySelectorAll(".quick-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      runCommand(button.dataset.command || "");
     });
   });
 
-  btnSave?.addEventListener("click", () => append("save", Eureka.save()));
+  document.querySelectorAll("[data-status]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const next = button.getAttribute("data-status");
+      if (!next) return;
+      runCommand(next);
+    });
+  });
+
+  document.querySelectorAll("[data-cmd]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const cmd = button.getAttribute("data-cmd");
+      if (!cmd) return;
+      input.value = cmd;
+      runCommand(cmd);
+      input.value = "";
+    });
+  });
+
+  btnSave?.addEventListener("click", () => {
+    appendLine("system@eureka:~$", Eureka.save());
+  });
+
   btnLoad?.addEventListener("click", () => {
-    const res = Eureka.load();
+    appendLine("system@eureka:~$", Eureka.load());
     setDot(Eureka.status);
-    append("load", res);
-    append("rules", Eureka.rules());
-    const last = Eureka._journal.slice(-5).map(e => e.out);
-    append("journal(last)", last.length ? last.join("\n") : "(empty)");
   });
 
   btnCopyLast?.addEventListener("click", async () => {
     const last = Eureka.last();
-    if (!last) return append("copy", "NO LAST OUTPUT");
+    if (!last) {
+      appendLine("system@eureka:~$", "No saved output yet.");
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(last);
-      append("copy", "COPIED LAST OUTPUT");
+      appendLine("system@eureka:~$", "Last output copied.");
     } catch {
-      append("copy", "COPY FAILED");
+      appendLine("system@eureka:~$", "Copy failed.");
     }
   });
 
-  contentInput.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    e.preventDefault();
-    btnInvoke?.click();
-  });
-
-  document.querySelectorAll("[data-cmd]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const cmd = el.getAttribute("data-cmd");
-      contentInput.value = cmd;
-      btnInvoke?.click();
-    });
-  });
-
   btnHelpToggle?.addEventListener("click", () => {
-    const hidden = helpPanel.style.display === "none";
-    helpPanel.style.display = hidden ? "" : "none";
-    btnHelpToggle.textContent = hidden ? "Hide" : "Show";
+    const isHidden = helpPanel.style.display === "none";
+    helpPanel.style.display = isHidden ? "" : "none";
   });
 }
 
