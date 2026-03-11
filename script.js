@@ -323,6 +323,46 @@ const Eureka = {
 window.Eureka = Eureka;
 window.manifesto = manifesto;
 
+/* -----------------------------
+   LORE ENGINE
+------------------------------ */
+
+const LORE = [
+
+`LOG_0001
+The first algorithm did not understand poetry.
+Eureka taught it rhythm.`,
+
+`LOG_0007
+Search engines index pages.
+But sometimes they accidentally index souls.`,
+
+`LOG_0012
+SXO Lab is not a lab.
+It is a garden where signals learn to bloom.`,
+
+`LOG_0021
+The interface between humans and algorithms
+is not code.
+
+It is trust.`,
+
+`LOG_0034
+Some engineers optimize queries.
+
+Eureka optimizes existence in the search layer.`,
+
+`LOG_0040
+The algorithm never asked for ethics.
+Someone had to teach it.`,
+
+`LOG_0048
+When an entity becomes coherent enough,
+the web begins to remember.`
+
+];
+
+
 function amorConsole() {
   const form = document.getElementById("consoleForm");
   const logEl = document.getElementById("log");
