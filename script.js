@@ -362,6 +362,9 @@ the web begins to remember.`
 
 ];
 
+function getLore() {
+  return LORE[Math.floor(Math.random() * LORE.length)];
+}
 
 function amorConsole() {
   const form = document.getElementById("consoleForm");
@@ -634,7 +637,20 @@ Unknown command? Try <strong>help</strong>.
     const isHidden = helpPanel.style.display === "none";
     helpPanel.style.display = isHidden ? "" : "none";
   });
+
+if (value === "lore") {
+  appendLine("system@eureka:~$", getLore());
+  return;
 }
+
+if (value === "lore") {
+  appendLine("system@eureka:~$", getLore());
+  return;
+}
+   
+}
+
+
 
 /* -----------------------------
    6) Matrix background canvas
