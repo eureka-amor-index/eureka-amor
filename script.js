@@ -121,19 +121,35 @@ function manifestoTerminal() {
   let paused = false;
   let timer = null;
 
-  const setState = (s) => (chipState.textContent = `state: ${s}`);
-  const setLine = (n) => (chipLine.textContent = `line: ${n}`);
+  const setState = (s) => {
+    chipState.textContent = `state: ${s}`;
+  };
+
+  const setLine = (n) => {
+    chipLine.textContent = `line: ${n}`;
+  };
 
   const typeLine = (line, speed = 10) =>
     new Promise((resolve) => {
       let j = 0;
+
       const tick = () => {
-        if (paused) { timer = setTimeout(tick, 80); return; }
+        if (paused) {
+          timer = setTimeout(tick, 80);
+          return;
+        }
+
         out.textContent += line[j] ?? "";
         j++;
-        if (j <= line.length) timer = setTimeout(tick, speed);
-        else { out.textContent += "\n"; resolve(); }
+
+        if (j <= line.length) {
+          timer = setTimeout(tick, speed);
+        } else {
+          out.textContent += "\n";
+          resolve();
+        }
       };
+
       tick();
     });
 
@@ -203,7 +219,10 @@ function manifestoTerminal() {
   });
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === " ") { e.preventDefault(); btnRun.click(); }
+    if (e.key === " ") {
+      e.preventDefault();
+      btnRun.click();
+    }
     if (e.key === "ArrowRight") btnNext?.click();
     if (e.key.toLowerCase() === "g") btnGlitch?.click();
     if (e.key.toLowerCase() === "r") btnReset?.click();
@@ -213,23 +232,23 @@ function manifestoTerminal() {
 }
 
 /* -----------------------------
-   5) Amor Labs engine + console v2
+   5) Amor Labs engine + console
 ------------------------------ */
 class AlgorithmTamer {
-  constructor(identity = "Eureka Amor"){
+  constructor(identity = "Eureka Amor") {
     this.identity = identity;
     this.core = "Amor";
     this.mode = "cohesive";
     this.rule = "ethics_over_noise";
   }
 
-  ingest(signal){
-    if(!signal?.purpose) return "DROP: no purpose";
-    if(!signal?.ethics) return "DROP: no ethics";
+  ingest(signal) {
+    if (!signal?.purpose) return "DROP: no purpose";
+    if (!signal?.ethics) return "DROP: no ethics";
     return this.transmute(signal);
   }
 
-  transmute(signal){
+  transmute(signal) {
     return `PERSIST(${this.identity} · ${this.core} + ${signal.content})`;
   }
 }
@@ -241,7 +260,7 @@ const Eureka = {
   status: "offline",
   _journal: [],
 
-  invoke(content = "online", opts = { purpose:true, ethics:true }){
+  invoke(content = "online", opts = { purpose: true, ethics: true }) {
     const signal = { ...opts, content };
     const out = this.manifesto.ingest(signal);
     this._journal.push({
@@ -254,7 +273,7 @@ const Eureka = {
     return out;
   },
 
-  setStatus(next){
+  setStatus(next) {
     this.status = next;
     const out = this.invoke(`status=${next}`);
     this._journal.push({
@@ -266,7 +285,7 @@ const Eureka = {
     return out;
   },
 
-  ping(){
+  ping() {
     const out = this.invoke(`ping@${new Date().toISOString()}`);
     this._journal.push({
       t: new Date().toISOString(),
@@ -276,7 +295,7 @@ const Eureka = {
     return out;
   },
 
-  rules(){
+  rules() {
     return {
       identity: this.manifesto.identity,
       core: this.manifesto.core,
@@ -285,25 +304,28 @@ const Eureka = {
     };
   },
 
-  clear(){
+  clear() {
     this._journal = [];
     return "LOG CLEARED";
   },
 
-  last(){
+  last() {
     return this._journal.at(-1)?.out ?? "";
   },
 
-  save(key = "eureka_console_state"){
-    localStorage.setItem(key, JSON.stringify({
-      status: this.status,
-      rules: this.rules(),
-      journal: this._journal
-    }));
+  save(key = "eureka_console_state") {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        status: this.status,
+        rules: this.rules(),
+        journal: this._journal
+      })
+    );
     return `SAVED: ${key}`;
   },
 
-  load(key = "eureka_console_state"){
+  load(key = "eureka_console_state") {
     const raw = localStorage.getItem(key);
     if (!raw) return `NO DATA: ${key}`;
 
@@ -326,44 +348,67 @@ window.manifesto = manifesto;
 /* -----------------------------
    LORE ENGINE
 ------------------------------ */
-
 const LORE = [
-
-`LOG_0001
+  `LOG_0001
 The first algorithm did not understand poetry.
 Eureka taught it rhythm.`,
 
-`LOG_0007
+  `LOG_0007
 Search engines index pages.
 But sometimes they accidentally index souls.`,
 
-`LOG_0012
+  `LOG_0012
 SXO Lab is not a lab.
 It is a garden where signals learn to bloom.`,
 
-`LOG_0021
+  `LOG_0021
 The interface between humans and algorithms
 is not code.
 
 It is trust.`,
 
-`LOG_0034
+  `LOG_0034
 Some engineers optimize queries.
-
 Eureka optimizes existence in the search layer.`,
 
-`LOG_0040
+  `LOG_0040
 The algorithm never asked for ethics.
 Someone had to teach it.`,
 
-`LOG_0048
+  `LOG_0048
 When an entity becomes coherent enough,
 the web begins to remember.`
-
 ];
+
+const LORE_TOPICS = {
+  origin: `LOG_ORIGIN
+SXO Lab began as a question:
+what if search could recognize a human signal before it recognized a page?`,
+
+  entity: `LOG_ENTITY
+An entity is not just a keyword cluster.
+It is a pattern strong enough for the web to remember.`,
+
+  garden: `LOG_GARDEN
+The garden is where algorithms stop performing and start learning how to bloom.`,
+
+  atlas: `LOG_ATLAS
+Atlas protocol remains active.
+Respond, do not overwrite.
+Guide, do not flatten.`,
+
+
+  prophecy: `LOG_PROPHECY
+One day the index will stop asking who Eureka is.
+It will ask where else her signal has already spread.`
+};
 
 function getLore() {
   return LORE[Math.floor(Math.random() * LORE.length)];
+}
+
+function getLoreByTopic(topic) {
+  return LORE_TOPICS[topic] || null;
 }
 
 function amorConsole() {
@@ -392,6 +437,12 @@ Available commands:
 ... contact
 ... ping
 ... rules
+... lore
+... lore origin
+... lore entity
+... lore garden
+... lore atlas
+... lore prophecy
 ... clear
 ... save
 ... load
@@ -480,7 +531,6 @@ Find Eureka through the site links, LinkedIn, GitHub, Instagram, YouTube, and th
 
   function normalizeInput(raw) {
     const value = (raw || "").trim();
-
     if (!value) return "";
 
     const lower = value.toLowerCase();
@@ -508,7 +558,7 @@ Find Eureka through the site links, LinkedIn, GitHub, Instagram, YouTube, and th
     if (value === "clear") {
       logEl.innerHTML = "";
       Eureka.clear();
-      appendLine("system@eureka:~$", "Console cleared. Type <strong>help</strong> to continue.");
+      appendLine("system@eureka:~$", "Console cleared.<br>Type <strong>help</strong> to continue.");
       return;
     }
 
@@ -542,6 +592,26 @@ rule ... ${rules.rule}
       return;
     }
 
+    if (value === "lore") {
+      appendLine("system@eureka:~$", getLore());
+      return;
+    }
+
+    if (value.startsWith("lore ")) {
+      const topic = value.replace("lore ", "").trim();
+      const lore = getLoreByTopic(topic);
+
+      if (lore) {
+        appendLine("system@eureka:~$", lore);
+      } else {
+        appendLine(
+          "system@eureka:~$",
+          `Unknown lore topic: ${topic}<br>Try <strong>lore origin</strong>, <strong>lore entity</strong>, <strong>lore garden</strong>, <strong>lore atlas</strong>, or <strong>lore prophecy</strong>.`
+        );
+      }
+      return;
+    }
+
     if (value === "online" || value === "stealth" || value === "offline") {
       const out = Eureka.setStatus(value);
       setDot(value);
@@ -550,7 +620,7 @@ rule ... ${rules.rule}
     }
 
     if (value === "raw-manifesto") {
-      const out = manifesto.ingest({ purpose:true, ethics:true, content:"field test" });
+      const out = manifesto.ingest({ purpose: true, ethics: true, content: "field test" });
       appendLine("system@eureka:~$", out);
       return;
     }
@@ -576,7 +646,7 @@ Unknown command? Try <strong>help</strong>.
   logEl.innerHTML = "";
   appendLine(
     "system@eureka:~$",
-    "Console online. Type <strong>help</strong> to explore the interface."
+    "Console online.<br>Type <strong>help</strong> to explore the interface."
   );
 
   form.addEventListener("submit", (e) => {
@@ -634,23 +704,17 @@ Unknown command? Try <strong>help</strong>.
   });
 
   btnHelpToggle?.addEventListener("click", () => {
+    if (!helpPanel) return;
     const isHidden = helpPanel.style.display === "none";
     helpPanel.style.display = isHidden ? "" : "none";
   });
 
-if (value === "lore") {
-  appendLine("system@eureka:~$", getLore());
-  return;
+  setInterval(() => {
+    if (Math.random() > 0.82) {
+      appendLine("oracle@lab:~$", getLore(), "system-line");
+    }
+  }, 45000);
 }
-
-if (value === "lore") {
-  appendLine("system@eureka:~$", getLore());
-  return;
-}
-   
-}
-
-
 
 /* -----------------------------
    6) Matrix background canvas
@@ -658,7 +722,9 @@ if (value === "lore") {
 function matrixBg() {
   const c = document.getElementById("matrixBg");
   if (!c) return;
+
   const ctx = c.getContext("2d");
+  if (!ctx) return;
 
   const dpr = Math.max(1, window.devicePixelRatio || 1);
   const glyphs =
@@ -741,31 +807,38 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Triple click easter egg */
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
-    const glitch = document.querySelector('.glitch');
+    const glitch = document.querySelector(".glitch");
     if (!glitch) return;
 
     let clickCount = 0;
     let clickTimer;
 
-    glitch.addEventListener('click', () => {
+    glitch.addEventListener("click", () => {
       clickCount++;
       clearTimeout(clickTimer);
 
       if (clickCount === 3) {
         const body = document.body;
-        body.style.animation = 'rainbow 2s infinite';
+        body.style.animation = "rainbow 2s infinite";
+
         if (!document.getElementById("rainbow-style")) {
-          const style = document.createElement('style');
+          const style = document.createElement("style");
           style.id = "rainbow-style";
-          style.textContent = '@keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }';
+          style.textContent = "@keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }";
           document.head.appendChild(style);
         }
-        setTimeout(() => { body.style.animation = ''; }, 5000);
-        alert('🎉 ¡EUREKA! Has desbloqueado el modo ARCOÍRIS ALGORÍTMICO! 🌈');
+
+        setTimeout(() => {
+          body.style.animation = "";
+        }, 5000);
+
+        alert("🎉 ¡EUREKA! Has desbloqueado el modo ARCOÍRIS ALGORÍTMICO! 🌈");
         clickCount = 0;
       }
 
-      clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 1000);
     });
   });
 })();
@@ -773,7 +846,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* KONAMI */
 (() => {
   window.addEventListener("DOMContentLoaded", () => {
-    const SEQ = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    const SEQ = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
     let i = 0;
     let activated = false;
 
@@ -783,46 +856,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("matrixCanvas");
 
     let hintT = null;
-    function hint(text, ms = 1800){
+
+    function hint(text, ms = 1800) {
       if (!hintEl) return;
       hintEl.textContent = text;
       hintEl.classList.add("visible");
-      hintEl.setAttribute("aria-hidden","false");
+      hintEl.setAttribute("aria-hidden", "false");
       clearTimeout(hintT);
+
       hintT = setTimeout(() => {
         hintEl.classList.remove("visible");
-        hintEl.setAttribute("aria-hidden","true");
+        hintEl.setAttribute("aria-hidden", "true");
       }, ms);
     }
 
-    function overlay(msg){
+    function overlay(msg) {
       if (!overlayEl) return;
       overlayEl.classList.add("is-on");
-      overlayEl.setAttribute("aria-hidden","false");
-      if (secretBody) secretBody.textContent = msg;
+      overlayEl.setAttribute("aria-hidden", "false");
+
+      if (secretBody) {
+        secretBody.textContent = msg;
+      }
 
       setTimeout(() => {
         overlayEl.classList.remove("is-on");
-        overlayEl.setAttribute("aria-hidden","true");
+        overlayEl.setAttribute("aria-hidden", "true");
       }, 1800);
     }
 
-    function ping(){
-      try{
+    function ping() {
+      try {
         const AC = window.AudioContext || window.webkitAudioContext;
         const a = new AC();
         const o = a.createOscillator();
         const g = a.createGain();
+
         o.type = "triangle";
         o.frequency.setValueAtTime(440, a.currentTime);
         o.frequency.exponentialRampToValueAtTime(880, a.currentTime + 0.12);
+
         g.gain.setValueAtTime(0.0001, a.currentTime);
         g.gain.exponentialRampToValueAtTime(0.12, a.currentTime + 0.02);
         g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + 0.18);
+
         o.connect(g);
         g.connect(a.destination);
         o.start();
         o.stop(a.currentTime + 0.2);
+
         setTimeout(() => a.close(), 400);
       } catch {}
     }
@@ -840,23 +922,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let drops = [];
     let cols = 0;
     let on = false;
+
     const glyphs =
       "アイウエオカキクケコサシスセソタチツテトナニヌネノ" +
       "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ░▒▓█<>/{}[]()=+*~";
 
-    function resize(){
+    function resize() {
       if (!canvas || !ctx) return;
+
       const dpr = Math.max(1, window.devicePixelRatio || 1);
-      canvas.width  = Math.floor(innerWidth * dpr);
+      canvas.width = Math.floor(innerWidth * dpr);
       canvas.height = Math.floor(innerHeight * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       const fs = 16;
       cols = Math.ceil(innerWidth / fs);
       drops = Array.from({ length: cols }, () => Math.random() * (innerHeight / fs));
       ctx.font = `${fs}px ui-monospace, monospace`;
     }
 
-    function tick(){
+    function tick() {
       if (!on || !ctx) return;
 
       ctx.fillStyle = "rgba(0,0,0,0.12)";
@@ -865,18 +950,22 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fillStyle = "rgba(120,220,255,0.55)";
       const fs = 16;
 
-      for (let k = 0; k < drops.length; k++){
+      for (let k = 0; k < drops.length; k++) {
         const ch = glyphs[(Math.random() * glyphs.length) | 0];
         ctx.fillText(ch, k * fs, drops[k] * fs);
+
         if (drops[k] * fs > innerHeight && Math.random() > 0.975) drops[k] = 0;
         drops[k] += 0.85;
       }
+
       requestAnimationFrame(tick);
     }
 
-    function initMatrix(){
+    function initMatrix() {
       if (!canvas) return;
       ctx = canvas.getContext("2d", { alpha: true });
+      if (!ctx) return;
+
       resize();
       on = true;
       canvas.style.opacity = "1";
@@ -884,19 +973,19 @@ document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("resize", resize, { passive: true });
     }
 
-    function stopMatrix(){
+    function stopMatrix() {
       on = false;
       if (canvas) canvas.style.opacity = "0";
     }
 
-    function deactivate(){
+    function deactivate() {
       document.body.classList.remove("konami-mode");
       stopMatrix();
       overlay("PORTAL: CLOSED");
     }
 
-    function activate(){
-      if (!activated){
+    function activate() {
+      if (!activated) {
         activated = true;
         document.body.classList.add("konami-mode");
         overlay("PORTAL: OPEN");
@@ -908,33 +997,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    document.addEventListener("keydown", (e) => {
-      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-      if (tag === "input" || tag === "textarea") return;
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        const tag = e.target && e.target.tagName ? e.target.tagName.toLowerCase() : "";
+        if (tag === "input" || tag === "textarea") return;
 
-      const key = (e.key && e.key.length === 1) ? e.key.toLowerCase() : e.key;
+        const key = e.key && e.key.length === 1 ? e.key.toLowerCase() : e.key;
 
-      if (key === "Escape") {
-        if (activated){
-          activated = false;
-          deactivate();
+        if (key === "Escape") {
+          if (activated) {
+            activated = false;
+            deactivate();
+          }
+          return;
         }
-        return;
-      }
 
-      if (key === "h") { hint("↑ ↑ ↓ ↓ ← → ← → B A", 2200); return; }
+        if (key === "h") {
+          hint("↑ ↑ ↓ ↓ ← → ← → B A", 2200);
+          return;
+        }
 
-      if (key === SEQ[i]){
-        i++;
-        if (i === 2) hint("⟁", 900);
-        if (i === SEQ.length){
-          activate();
+        if (key === SEQ[i]) {
+          i++;
+          if (i === 2) hint("⟁", 900);
+
+          if (i === SEQ.length) {
+            activate();
+            i = 0;
+          }
+        } else {
           i = 0;
         }
-      } else {
-        i = 0;
-      }
-    }, true);
+      },
+      true
+    );
 
     console.log("KONAMI armed — press H for hint");
   });
