@@ -203,54 +203,146 @@
       <p class="hint">Tip: click sobre el terminal para pausar / continuar.</p>
     </section>
 
-    <section class="amor-console" aria-label="Amor Labs Console">
-      <header class="amor-header">
-        <div class="amor-title">
-          <div class="amor-badge">AMOR LABS</div>
-          <h2>Eureka Console</h2>
-          <p>Command panel · cohesive mode</p>
-        </div>
-        <div class="amor-status">
-          <span class="dot" id="dot"></span>
-          <span id="statusText">offline</span>
-        </div>
-      </header>
+   <section class="amor-console oracle-shell" aria-label="Eureka Console">
+  <header class="amor-header oracle-header">
+    <div class="amor-title oracle-title">
+      <div class="amor-badge">AMOR LABS</div>
+      <h2>Eureka Console</h2>
+      <p>Signal interface · command ritual · GitHub-safe mode</p>
+    </div>
 
-      <div class="amor-grid">
-        <div class="amor-card">
-          <h3>Quick commands</h3>
+    <div class="amor-status oracle-status">
+      <span class="dot" id="dot"></span>
+      <span id="statusText">offline</span>
+    </div>
+  </header>
 
-          <div class="btn-row">
-            <button class="btn" id="btnInvokeConsole" type="button">Invoke</button>
-            <button class="btn" id="btnPing" type="button">Ping</button>
-            <button class="btn" id="btnRules" type="button">Rules</button>
-            <button class="btn" id="btnClear" type="button">Clear log</button>
-          </div>
+  <div class="oracle-frame">
+    <div class="oracle-topbar">
+      <span class="oracle-mini-dot"></span>
+      <span class="oracle-mini-dot"></span>
+      <span class="oracle-mini-dot"></span>
+      <p>visitor@eureka:~ / human-algorithm-interface</p>
+    </div>
 
-          <div class="amor-form">
-            <label for="contentInput">content / command</label>
-            <input id="contentInput" placeholder='online  |  Eureka.ping()  |  manifesto.ingest({purpose:true,ethics:true,content:"test"})' />
-            <label>status</label>
-            <div class="btn-row">
-              <button class="btn ghost" data-status="online" type="button">online</button>
-              <button class="btn ghost" data-status="stealth" type="button">stealth</button>
-              <button class="btn ghost" data-status="offline" type="button">offline</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="amor-card">
-          <h3>Log</h3>
-          <pre class="amor-log" id="log"></pre>
-
-          <div class="amor-footer">
-            <button class="btn ghost" id="btnSave" type="button">Save</button>
-            <button class="btn ghost" id="btnLoad" type="button">Load</button>
-            <button class="btn ghost" id="btnCopyLast" type="button">Copy last</button>
-          </div>
-        </div>
+    <div class="oracle-output" id="log" role="log" aria-live="polite">
+      <div class="line system-line">
+        <span class="prompt">system@eureka:~$</span>
+        <span class="text">Initializing console...</span>
       </div>
-    </section>
+    </div>
+
+    <form class="oracle-inputbar amor-form" id="consoleForm" autocomplete="off">
+      <span class="prompt">visitor@lab:~$</span>
+      <input
+        id="contentInput"
+        type="text"
+        placeholder="try: help, about, services, entity, lab, work, contact, ping, rules, clear"
+        aria-label="Console input"
+      />
+      <button class="btn" id="btnInvokeConsole" type="submit">run</button>
+    </form>
+
+    <div class="quick-commands">
+      <button class="btn ghost quick-btn" type="button" data-command="help">help</button>
+      <button class="btn ghost quick-btn" type="button" data-command="about">about</button>
+      <button class="btn ghost quick-btn" type="button" data-command="services">services</button>
+      <button class="btn ghost quick-btn" type="button" data-command="entity">entity</button>
+      <button class="btn ghost quick-btn" type="button" data-command="lab">lab</button>
+      <button class="btn ghost quick-btn" type="button" data-command="work">work</button>
+      <button class="btn ghost quick-btn" type="button" data-command="contact">contact</button>
+      <button class="btn ghost quick-btn" type="button" data-command="ping">ping</button>
+      <button class="btn ghost quick-btn" type="button" data-command="rules">rules</button>
+      <button class="btn ghost quick-btn" type="button" data-command="clear">clear</button>
+    </div>
+
+    <div class="oracle-status-row">
+      <span class="status-label">mode</span>
+      <div class="btn-row">
+        <button class="btn ghost" data-status="online" type="button">online</button>
+        <button class="btn ghost" data-status="stealth" type="button">stealth</button>
+        <button class="btn ghost" data-status="offline" type="button">offline</button>
+      </div>
+
+      <div class="amor-footer oracle-actions">
+        <button class="btn ghost" id="btnSave" type="button">Save</button>
+        <button class="btn ghost" id="btnLoad" type="button">Load</button>
+        <button class="btn ghost" id="btnCopyLast" type="button">Copy last</button>
+        <button class="btn ghost" id="btnHelpToggle" type="button">Toggle help</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="amor-help" id="helpPanel" aria-label="Help panel">
+  <div class="help-head">
+    <h3>How to use</h3>
+  </div>
+
+  <p class="help-sub">
+    Type a command and press <b>run</b>... or click any quick command below.
+  </p>
+
+  <div class="help-grid">
+    <div class="help-card">
+      <h4>Core commands</h4>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="help"><span class="emoji">🧭</span> Help</button>
+        <code>help</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="about"><span class="emoji">✨</span> About</button>
+        <code>about</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="services"><span class="emoji">🧪</span> Services</button>
+        <code>services</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="entity"><span class="emoji">🪐</span> Entity</button>
+        <code>entity</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="lab"><span class="emoji">🌌</span> Lab</button>
+        <code>lab</code>
+      </div>
+    </div>
+
+    <div class="help-card">
+      <h4>System commands</h4>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="work"><span class="emoji">💻</span> Work</button>
+        <code>work</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="contact"><span class="emoji">💌</span> Contact</button>
+        <code>contact</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="ping"><span class="emoji">🫀</span> Ping</button>
+        <code>ping</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="rules"><span class="emoji">🧾</span> Rules</button>
+        <code>rules</code>
+      </div>
+
+      <div class="ex">
+        <button class="ex-btn" type="button" data-cmd="clear"><span class="emoji">🧼</span> Clear</button>
+        <code>clear</code>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section class="amor-help" id="helpPanel" aria-label="Help panel">
       <div class="help-head">
