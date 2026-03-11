@@ -1219,8 +1219,12 @@ input:focus{
   letter-spacing: .14em;
 }
 
-.oracle-status-row .btn-row{
-  gap: 10px;
+.oracle-status-row{
+display:flex;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+}
 }
 
 .oracle-status-row .btn.ghost{
