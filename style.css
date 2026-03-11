@@ -1033,6 +1033,318 @@ input:focus{
   border-radius: 999px;
 }
 
+/* =========================
+   EUREKA CONSOLE V3 PATCH
+========================= */
+
+.oracle-shell.amor-console{
+  margin: 56px 0 0;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(180deg, rgba(22,16,44,.78), rgba(8,10,22,.90));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.03) inset,
+    0 32px 90px rgba(0,0,0,.42),
+    0 0 40px rgba(120,220,255,.08);
+  backdrop-filter: blur(14px);
+}
+
+.oracle-header.amor-header{
+  padding: 22px 26px 20px;
+  align-items: center;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(190,140,255,.16), transparent 34%),
+    radial-gradient(circle at 85% 15%, rgba(120,220,255,.12), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.oracle-title h2{
+  margin: 0;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.05;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,.97);
+}
+
+.oracle-title p{
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: rgba(220,225,245,.72);
+}
+
+.amor-badge{
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: rgba(255,220,245,.95);
+  background: rgba(255,70,180,.10);
+  border: 1px solid rgba(255,70,180,.25);
+}
+
+.oracle-status.amor-status{
+  min-width: 220px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+
+.oracle-status #statusText{
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.oracle-frame{
+  background: rgba(7,8,18,.62);
+}
+
+.oracle-topbar{
+  padding: 14px 22px;
+  background: rgba(255,255,255,.025);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.oracle-topbar p{
+  font-size: 12px;
+  color: rgba(220,225,240,.74);
+  letter-spacing: .08em;
+}
+
+.oracle-output{
+  min-height: 210px;
+  max-height: 360px;
+  padding: 24px 22px 18px;
+  background:
+    linear-gradient(180deg, rgba(4,5,12,.74), rgba(8,8,18,.68));
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.line{
+  margin: 0 0 16px;
+}
+
+.prompt{
+  display: inline-block;
+  min-width: 220px;
+  color: rgb(var(--cyan));
+  font-weight: 700;
+  vertical-align: top;
+}
+
+.user-line .prompt{
+  color: rgb(var(--hot));
+}
+
+.text{
+  display: inline;
+  color: rgba(255,255,255,.92);
+}
+
+.oracle-inputbar{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px 14px;
+  background: rgba(255,255,255,.02);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.oracle-inputbar .prompt{
+  min-width: auto;
+  white-space: nowrap;
+  margin-right: 0;
+}
+
+.oracle-inputbar input{
+  height: 52px;
+  padding: 0 18px;
+  border-radius: 18px;
+  background: rgba(0,0,0,.34);
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.96);
+  font-size: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.015);
+}
+
+.oracle-inputbar input::placeholder{
+  color: rgba(220,225,245,.38);
+}
+
+.oracle-inputbar input:focus{
+  border: 1px solid rgba(120,220,255,.36);
+  box-shadow:
+    0 0 0 4px rgba(120,220,255,.10),
+    inset 0 0 0 1px rgba(255,255,255,.02);
+}
+
+.oracle-inputbar .btn{
+  height: 52px;
+  min-width: 110px;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.quick-commands{
+  padding: 2px 22px 18px;
+  gap: 10px;
+}
+
+.quick-btn{
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.oracle-status-row{
+  padding: 0 22px 22px;
+  gap: 14px;
+}
+
+.status-label{
+  font-size: 11px;
+  color: rgba(220,225,245,.55);
+  letter-spacing: .14em;
+}
+
+.oracle-status-row .btn-row{
+  gap: 10px;
+}
+
+.oracle-status-row .btn.ghost{
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.oracle-actions{
+  margin-top: 8px;
+  gap: 10px;
+}
+
+.oracle-actions .btn{
+  border-radius: 16px;
+  padding: 10px 16px;
+}
+
+/* Help panel better */
+.amor-help{
+  margin-top: 18px;
+  border-radius: 24px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.amor-help h3,
+.amor-help h4{
+  color: rgba(255,255,255,.94);
+}
+
+.help-sub{
+  font-size: 13px;
+  color: rgba(220,225,245,.70);
+}
+
+.help-card{
+  border-radius: 18px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.ex{
+  grid-template-columns: 140px 1fr;
+}
+
+.ex-btn{
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ex code{
+  border-radius: 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.03);
+}
+
+/* make matrix behind console less aggressive visually */
+.amor-console,
+.amor-help{
+  position: relative;
+}
+
+.amor-console::before,
+.amor-help::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7,8,18,.18);
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  .oracle-header.amor-header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .oracle-status.amor-status{
+    min-width: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prompt{
+    min-width: 0;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .text{
+    display: block;
+  }
+
+  .oracle-inputbar{
+    grid-template-columns: 1fr;
+  }
+
+  .oracle-inputbar .btn{
+    width: 100%;
+  }
+
+  .quick-commands{
+    gap: 8px;
+  }
+
+  .quick-btn{
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .oracle-actions{
+    justify-content: stretch;
+  }
+
+  .oracle-actions .btn{
+    flex: 1 1 100%;
+  }
+}
+
 .oracle-status-row{
   display:grid;
   gap: 12px;
