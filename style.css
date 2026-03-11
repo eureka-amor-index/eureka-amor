@@ -1120,3 +1120,59 @@ body.glitch .terminal{
     justify-content: center;
   }
 }
+/* ===== console bottom buttons = same style as top pills ===== */
+
+.oracle-controls{
+  display: grid;
+  gap: 14px;
+  padding: 0 22px 22px;
+}
+
+.oracle-controls-group{
+  display: grid;
+  gap: 8px;
+  justify-content: start;
+}
+
+.oracle-inline-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.oracle-inline-buttons .mini-btn,
+.oracle-inline-buttons .btn,
+.oracle-inline-buttons .btn.ghost{
+  width: auto !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.oracle-inline-buttons .mini-btn:hover,
+.oracle-inline-buttons .btn:hover,
+.oracle-inline-buttons .btn.ghost:hover{
+  border-color: rgb(var(--cyan) / 0.35) !important;
+  background: rgb(var(--cyan) / 0.08) !important;
+}
+
+.status-label{
+  font-size: 11px;
+  color: rgba(220,225,245,.55);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
