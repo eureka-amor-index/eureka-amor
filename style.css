@@ -713,6 +713,8 @@ body.glitch .terminal{
 .oracle-controls-group{
   display: grid;
   gap: 8px;
+  justify-content: center;
+  text-align: center;
 }
 
 .status-label{
