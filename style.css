@@ -1834,10 +1834,8 @@ body.glitch .terminal{
 }
 
 .oracle-controls-group{
-  display: grid;
-  gap: 8px;
-  justify-content: center;
-  text-align: center;
+  width: 520px;
+  max-width: 100%;
 }
 
 .status-label{
