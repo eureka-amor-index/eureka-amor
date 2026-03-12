@@ -1088,15 +1088,15 @@ body.glitch .terminal{
   display: grid;
   gap: 16px;
   padding: 0 22px 24px;
-  justify-content: center;
+  width: 100%;
 }
 
 .oracle-controls-group{
   display: grid;
   gap: 8px;
-  width: 520px;
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 520px;
+  margin: 0;
 }
 
 .status-label{
