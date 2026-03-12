@@ -2261,14 +2261,6 @@ body.glitch .terminal{
   margin: 0 auto;
 }
 
-.status-label{
-  margin: 0;
-  font-size: 11px;
-  color: rgba(220,225,245,.55);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  text-align: left;
-}
 
 .oracle-inline-buttons{
   display: flex;
