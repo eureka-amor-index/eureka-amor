@@ -10,14 +10,9 @@
 <meta name="description" content="Lab Log: experiments in Search Experience Optimization, digital identity and human-algorithm interfaces by Eureka Amor.">
 
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://eurekaamor.com/blog/">
 
-<!-- Favicon -->
-
 <link rel="icon" href="https://eurekaamor.com/favicon.png" type="image/png">
-
-<!-- Open Graph -->
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lab Log | SXO Experiments by Eureka Amor">
@@ -25,260 +20,860 @@
 <meta property="og:url" content="https://eurekaamor.com/blog/">
 <meta property="og:image" content="https://eurekaamor.com/lab-log.png">
 
-<!-- Twitter -->
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lab Log | SXO Experiments">
 <meta name="twitter:description" content="A constellation of experiments in search and digital identity.">
 <meta name="twitter:image" content="https://eurekaamor.com/lab-log.png">
 
-<!-- Fonts -->
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#050510;
+  --bg-2:#0b0b1f;
+  --bg-3:#110c2b;
+  --cyan:#6ee7ff;
+  --cyan-2:#35cfff;
+  --violet:#b56cff;
+  --pink:#ff4fd8;
+  --white:#f8fbff;
+  --line:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.055);
+  --glow-cyan:0 0 18px rgba(53,207,255,.45), 0 0 42px rgba(53,207,255,.18);
+  --glow-violet:0 0 18px rgba(181,108,255,.45), 0 0 42px rgba(181,108,255,.18);
+  --glow-pink:0 0 18px rgba(255,79,216,.35), 0 0 42px rgba(255,79,216,.18);
+  --shadow-card:0 16px 50px rgba(0,0,0,.38);
+  --max:1080px;
+}
 
-/* BASE */
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-font-family:Inter, sans-serif;
-color:white;
-background:
-radial-gradient(circle at 20% 20%, #3c1a6e, transparent 40%),
-radial-gradient(circle at 80% 30%, #1b2e88, transparent 40%),
-#050510;
-overflow-x:hidden;
+  margin:0;
+  font-family:Inter, sans-serif;
+  color:var(--white);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(181,108,255,.22), transparent 0 34%),
+    radial-gradient(circle at 82% 12%, rgba(53,207,255,.18), transparent 0 30%),
+    radial-gradient(circle at 50% 65%, rgba(255,79,216,.10), transparent 0 28%),
+    linear-gradient(180deg, #080814 0%, #070711 38%, #050510 100%);
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
 }
 
-/* STAR FIELD */
-
+/* layered cosmos */
 body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background-image:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:.25;
-pointer-events:none;
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.9) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,.7) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,.7) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 85% 68%, rgba(255,255,255,.65) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 12% 75%, rgba(255,255,255,.75) 0 1px, transparent 2px);
+  background-size: 260px 260px, 320px 320px, 380px 380px, 280px 280px, 340px 340px;
+  animation: driftStars 34s linear infinite;
 }
 
-/* HERO */
+body::after{
+  content:"";
+  position:fixed;
+  inset:auto 0 0 0;
+  height:42vh;
+  pointer-events:none;
+  opacity:.35;
+  background:
+    linear-gradient(to top, rgba(50,20,98,.35), transparent 70%),
+    linear-gradient(rgba(90,100,255,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,100,255,.14) 1px, transparent 1px);
+  background-size:100% 100%, 100% 34px, 34px 100%;
+  transform:perspective(1200px) rotateX(70deg);
+  transform-origin:bottom center;
+  filter:drop-shadow(0 0 18px rgba(113,94,255,.25));
+}
 
+@keyframes driftStars{
+  from{ transform:translate3d(0,0,0); }
+  to{ transform:translate3d(-80px,40px,0); }
+}
+
+/* particles canvas */
+#space-particles{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* parallax layers */
+.parallax-glow,
+.parallax-orb,
+.parallax-cloud-a,
+.parallax-cloud-b{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  will-change:transform;
+}
+
+.parallax-glow{
+  width:52vw;
+  height:52vw;
+  max-width:760px;
+  max-height:760px;
+  left:-10vw;
+  top:-8vh;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at center,
+      rgba(142,84,255,.24) 0%,
+      rgba(77,169,255,.14) 28%,
+      rgba(255,79,216,.08) 48%,
+      transparent 70%);
+  filter:blur(12px);
+}
+
+.parallax-orb{
+  right:-8vw;
+  top:8vh;
+  width:30vw;
+  height:30vw;
+  max-width:420px;
+  max-height:420px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,
+      rgba(255,255,255,.75) 0 1%,
+      rgba(194,125,255,.95) 8%,
+      rgba(81,206,255,.88) 38%,
+      rgba(61,44,152,.35) 72%,
+      transparent 74%);
+  box-shadow:
+    0 0 50px rgba(132,93,255,.30),
+    0 0 120px rgba(72,195,255,.18);
+  opacity:.42;
+  filter:blur(.5px);
+}
+
+.parallax-orb::before{
+  content:"";
+  position:absolute;
+  inset:32% -10%;
+  border-radius:50%;
+  border:8px solid rgba(180,230,255,.75);
+  border-right-color:rgba(255,105,220,.9);
+  border-top-color:rgba(255,255,255,.95);
+  box-shadow:
+    0 0 18px rgba(110,231,255,.55),
+    0 0 40px rgba(255,79,216,.22);
+  transform:rotate(-16deg);
+}
+
+.parallax-cloud-a,
+.parallax-cloud-b{
+  inset:auto;
+  border-radius:50%;
+  filter:blur(42px);
+  opacity:.22;
+}
+
+.parallax-cloud-a{
+  width:420px;
+  height:220px;
+  left:10%;
+  top:48%;
+  background:radial-gradient(circle, rgba(255,79,216,.48), transparent 68%);
+}
+
+.parallax-cloud-b{
+  width:520px;
+  height:260px;
+  right:4%;
+  top:58%;
+  background:radial-gradient(circle, rgba(53,207,255,.42), transparent 68%);
+}
+
+.site{
+  position:relative;
+  z-index:1;
+}
+
+/* top aura lines */
+.top-lines{
+  position:absolute;
+  inset:0 0 auto 0;
+  height:460px;
+  pointer-events:none;
+  opacity:.55;
+  background:
+    linear-gradient(90deg, transparent, rgba(110,231,255,.18), transparent),
+    linear-gradient(120deg, transparent 24%, rgba(255,79,216,.12) 38%, transparent 54%),
+    linear-gradient(60deg, transparent 18%, rgba(181,108,255,.10) 38%, transparent 60%);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.18), transparent);
+}
+
+/* hero */
 .hero{
+  position:relative;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:120px 20px 70px;
+  text-align:center;
+}
 
-text-align:center;
-padding:120px 20px 80px;
+.hero::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:48px;
+  width:440px;
+  height:440px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle,
+      rgba(103,209,255,.16) 0%,
+      rgba(183,94,255,.18) 32%,
+      rgba(255,79,216,.11) 48%,
+      transparent 72%);
+  filter:blur(10px);
+  z-index:-1;
+}
 
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  margin-bottom:26px;
+  border:1px solid rgba(125,211,252,.25);
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  backdrop-filter:blur(10px);
+  box-shadow:var(--glow-cyan);
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.hero-badge .dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--cyan), var(--pink));
+  box-shadow:0 0 12px rgba(110,231,255,.8);
+}
+
+.planet-wrap{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  margin-bottom:28px;
+}
+
+.planet-wrap::before{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,79,216,.16), rgba(53,207,255,.10), transparent 68%);
+  filter:blur(20px);
+  animation:pulseGlow 6s ease-in-out infinite;
 }
 
 .hero img{
-
-width:220px;
-margin-bottom:30px;
-filter:drop-shadow(0 0 25px #a855ff);
-
+  position:relative;
+  width:220px;
+  max-width:58vw;
+  display:block;
+  filter:
+    drop-shadow(0 0 22px rgba(181,108,255,.65))
+    drop-shadow(0 0 42px rgba(53,207,255,.35));
+  animation:planetFloat 6.2s ease-in-out infinite;
 }
 
 .hero h1{
+  margin:0 0 14px;
+  font-family:Orbitron, sans-serif;
+  font-size:clamp(2.7rem, 8vw, 5.4rem);
+  line-height:.96;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:linear-gradient(90deg, #d9f7ff 0%, #7dd3fc 28%, #b56cff 70%, #ffd9fb 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 24px rgba(181,108,255,.22);
+}
 
-font-family:Orbitron;
-font-size:52px;
-letter-spacing:2px;
-
-background:linear-gradient(90deg,#7dd3fc,#c084fc);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-margin-bottom:10px;
-
+.hero-sub{
+  margin:0 auto 18px;
+  width:min(720px, 100%);
+  font-family:Orbitron, sans-serif;
+  font-size:clamp(1rem, 2.1vw, 1.25rem);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(230,244,255,.86);
 }
 
 .hero p{
-
-font-size:18px;
-opacity:.85;
-max-width:620px;
-margin:auto;
-
+  margin:0 auto;
+  width:min(760px, 100%);
+  font-size:clamp(1rem, 2vw, 1.16rem);
+  line-height:1.8;
+  color:rgba(242,247,255,.82);
+  text-wrap:balance;
 }
 
-/* POSTS GRID */
+.hero p strong{
+  color:#e4f6ff;
+  font-weight:600;
+  text-shadow:0 0 12px rgba(110,231,255,.18);
+}
+
+@keyframes planetFloat{
+  0%,100%{ transform:translateY(0px) rotate(0deg); }
+  50%{ transform:translateY(-10px) rotate(-1deg); }
+}
+
+@keyframes pulseGlow{
+  0%,100%{ opacity:.85; transform:scale(1); }
+  50%{ opacity:1; transform:scale(1.06); }
+}
+
+/* sections */
+.posts-shell{
+  position:relative;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:10px 20px 30px;
+}
+
+.section-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 24px;
+  color:rgba(226,243,255,.88);
+  font-family:Orbitron, sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-size:.84rem;
+}
+
+.section-label::before{
+  content:"";
+  display:block;
+  width:44px;
+  height:1px;
+  background:linear-gradient(90deg, rgba(110,231,255,.95), rgba(181,108,255,.2));
+  box-shadow:0 0 12px rgba(110,231,255,.35);
+}
 
 .posts{
-
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-
-display:grid;
-grid-template-columns:1fr;
-gap:28px;
-
+  display:grid;
+  grid-template-columns:1fr;
+  gap:26px;
 }
 
-/* CARD */
+.post-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
 
 .card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(165,185,255,.16);
+  border-radius:24px;
+  padding:28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)),
+    radial-gradient(circle at 90% 20%, rgba(181,108,255,.12), transparent 28%),
+    radial-gradient(circle at 10% 100%, rgba(53,207,255,.09), transparent 28%);
+  backdrop-filter:blur(14px);
+  box-shadow:var(--shadow-card);
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  isolation:isolate;
+}
 
-border:1px solid rgba(255,255,255,.12);
-border-radius:16px;
-padding:26px;
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:24px;
+  background:linear-gradient(120deg, rgba(110,231,255,.6), rgba(181,108,255,.42), rgba(255,79,216,.4), rgba(110,231,255,.2));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.55;
+  z-index:-1;
+}
 
-background:rgba(255,255,255,.03);
-backdrop-filter:blur(6px);
-
-transition:.3s;
-
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-20% auto auto -10%;
+  width:60%;
+  height:180%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  transform:rotate(18deg) translateX(-130%);
+  transition:transform .7s ease;
+  pointer-events:none;
 }
 
 .card:hover{
-
-border-color:#a855ff;
-box-shadow:0 0 20px rgba(168,85,247,.4);
-
-transform:translateY(-4px);
-
+  transform:translateY(-6px) scale(1.01);
+  border-color:rgba(181,108,255,.45);
+  box-shadow:
+    0 24px 65px rgba(0,0,0,.45),
+    0 0 0 1px rgba(255,255,255,.03),
+    0 0 34px rgba(181,108,255,.16),
+    0 0 18px rgba(53,207,255,.12);
 }
 
-.card h2{
-
-font-family:Orbitron;
-font-size:24px;
-margin-bottom:10px;
-
-color:#c084fc;
-
+.card:hover::after{
+  transform:rotate(18deg) translateX(250%);
 }
 
-.card p{
-
-opacity:.85;
-
+.card-inner{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
 }
 
-/* LINKS */
-
-a{
-
-text-decoration:none;
-color:inherit;
-
+.card-copy h2{
+  margin:0 0 12px;
+  font-family:Orbitron, sans-serif;
+  font-size:clamp(1.35rem, 2vw, 1.8rem);
+  line-height:1.18;
+  color:#d9f7ff;
+  text-shadow:0 0 18px rgba(110,231,255,.12);
 }
 
-/* BACK BUTTON */
+.card-copy p{
+  margin:0;
+  font-size:1rem;
+  line-height:1.75;
+  color:rgba(239,246,255,.8);
+  max-width:690px;
+}
+
+.card-orb{
+  position:relative;
+  width:110px;
+  height:110px;
+  min-width:110px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 36% 30%, rgba(255,255,255,.9) 0 4%, rgba(255,162,246,.9) 10%, rgba(91,202,255,.88) 42%, rgba(50,38,130,.35) 72%, transparent 74%);
+  box-shadow:
+    0 0 30px rgba(181,108,255,.28),
+    0 0 50px rgba(53,207,255,.18);
+  opacity:.9;
+}
+
+.card-orb::before{
+  content:"";
+  position:absolute;
+  inset:42% -8%;
+  border-radius:50%;
+  border:4px solid rgba(225,247,255,.9);
+  border-right-color:rgba(255,79,216,.9);
+  border-bottom-color:rgba(120,227,255,.9);
+  transform:rotate(-18deg);
+  box-shadow:0 0 12px rgba(110,231,255,.34);
+}
+
+.card-meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+  font-size:.82rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(219,236,255,.72);
+  font-family:Orbitron, sans-serif;
+}
+
+.card-meta .mini-line{
+  width:28px;
+  height:1px;
+  background:linear-gradient(90deg, var(--cyan), transparent);
+}
 
 .back{
-
-text-align:center;
-padding:60px;
-
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 20px 100px;
+  text-align:center;
 }
 
 .back a{
-
-padding:12px 24px;
-
-border:1px solid #7dd3fc;
-border-radius:8px;
-
-font-family:Orbitron;
-
-transition:.3s;
-
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 22px;
+  border-radius:14px;
+  border:1px solid rgba(110,231,255,.28);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  color:#eefaff;
+  text-decoration:none;
+  font-family:Orbitron, sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  box-shadow:var(--glow-cyan);
+  transition:transform .3s ease, background .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
 .back a:hover{
-
-background:#7dd3fc;
-color:black;
-
+  transform:translateY(-2px);
+  border-color:rgba(181,108,255,.52);
+  background:linear-gradient(180deg, rgba(181,108,255,.18), rgba(53,207,255,.10));
+  box-shadow:var(--glow-violet), var(--glow-cyan);
 }
 
+/* footer glow */
+.footer-glow{
+  position:fixed;
+  left:50%;
+  bottom:-140px;
+  width:70vw;
+  height:280px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(110,231,255,.12), rgba(181,108,255,.10), transparent 68%);
+  filter:blur(30px);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* responsive */
+@media (max-width: 760px){
+  .hero{
+    padding-top:98px;
+  }
+
+  .hero-sub{
+    letter-spacing:.16em;
+  }
+
+  .card{
+    padding:22px;
+    border-radius:20px;
+  }
+
+  .card-inner{
+    grid-template-columns:1fr;
+  }
+
+  .card-orb{
+    width:82px;
+    height:82px;
+    min-width:82px;
+  }
+
+  .back{
+    padding-bottom:80px;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
+  }
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- HERO -->
+<canvas id="space-particles" aria-hidden="true"></canvas>
 
-<section class="hero">
+<div class="parallax-glow" data-depth="0.08"></div>
+<div class="parallax-orb" data-depth="0.16"></div>
+<div class="parallax-cloud-a" data-depth="0.05"></div>
+<div class="parallax-cloud-b" data-depth="0.1"></div>
+<div class="footer-glow"></div>
 
-<img src="https://eurekaamor.com/favicon.png" alt="SXO Lab Planet">
+<div class="site">
+  <div class="top-lines"></div>
 
-<h1>LAB LOG</h1>
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      new constellation detected
+    </div>
 
-<p>
-A constellation of experiments exploring search systems,
-digital identity and the human-algorithm interface.
-</p>
+    <div class="planet-wrap">
+      <img src="https://eurekaamor.com/favicon.png" alt="SXO Lab Planet">
+    </div>
 
-</section>
+    <h1>Lab Log</h1>
+    <div class="hero-sub">SXO Experiments by Eureka Amor</div>
 
-<!-- POSTS -->
+    <p>
+      A constellation of experiments exploring <strong>search systems</strong>,
+      <strong>digital identity</strong> and the <strong>human-algorithm interface</strong>.
+    </p>
+  </section>
 
-<section class="posts">
+  <section class="posts-shell">
+    <div class="section-label">Field Notes</div>
 
-<a href="./posts/what-is-sxo.html">
+    <section class="posts">
 
-<div class="card">
+      <a class="post-link" href="./posts/what-is-sxo.html">
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-copy">
+              <h2>What is SXO?</h2>
+              <p>
+                Exploring Search Experience Optimization in the age of intelligent
+                search systems and human-AI interfaces.
+              </p>
+              <div class="card-meta">
+                <span class="mini-line"></span>
+                experiment 001
+              </div>
+            </div>
+            <div class="card-orb" aria-hidden="true"></div>
+          </div>
+        </article>
+      </a>
 
-<h2>What is SXO?</h2>
+      <a class="post-link" href="./posts/entity-building.html">
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-copy">
+              <h2>Entity Building in the Age of AI</h2>
+              <p>
+                In an algorithm-driven world, building a digital entity means shaping
+                how search systems understand identity.
+              </p>
+              <div class="card-meta">
+                <span class="mini-line"></span>
+                experiment 002
+              </div>
+            </div>
+            <div class="card-orb" aria-hidden="true"></div>
+          </div>
+        </article>
+      </a>
 
-<p>
-Exploring Search Experience Optimization in the age of
-intelligent search systems and human-AI interfaces.
-</p>
+    </section>
+  </section>
 
+  <div class="back">
+    <a href="../index.html">← Back to Home</a>
+  </div>
 </div>
-
-</a>
-
-<a href="./posts/entity-building.html">
-
-<div class="card">
-
-<h2>Entity Building in the Age of AI</h2>
-
-<p>
-In an algorithm-driven world, building a digital entity
-means shaping how search systems understand identity.
-</p>
-
-</div>
-
-</a>
-
-</section>
-
-<!-- BACK -->
-
-<div class="back">
-
-<a href="../index.html">← Back to Home</a>
-
-</div>
-
-<!-- SCHEMA -->
 
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"Blog",
-"name":"Eureka Amor Lab Log",
-"description":"Experiments in Search Experience Optimization and digital identity.",
-"url":"https://eurekaamor.com/blog/",
-"author":{
-"@type":"Person",
-"name":"Eureka Amor",
-"url":"https://eurekaamor.com"
-},
-"publisher":{
-"@type":"Person",
-"name":"Eureka Amor"
+  "@context":"https://schema.org",
+  "@type":"Blog",
+  "@id":"https://eurekaamor.com/blog/#blog",
+  "name":"Eureka Amor Lab Log",
+  "headline":"Lab Log",
+  "description":"Experiments in Search Experience Optimization, digital identity and human-algorithm interfaces by Eureka Amor.",
+  "url":"https://eurekaamor.com/blog/",
+  "inLanguage":"en",
+  "image":"https://eurekaamor.com/lab-log.png",
+  "author":{
+    "@type":"Person",
+    "@id":"https://eurekaamor.com/#person",
+    "name":"Eureka Amor",
+    "url":"https://eurekaamor.com",
+    "image":"https://eurekaamor.com/lab-log.png"
+  },
+  "publisher":{
+    "@type":"Person",
+    "@id":"https://eurekaamor.com/#person",
+    "name":"Eureka Amor",
+    "url":"https://eurekaamor.com"
+  }
 }
-}
+</script>
+
+<script>
+(() => {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* PARALLAX */
+  const layers = document.querySelectorAll('[data-depth]');
+  let tx = 0;
+  let ty = 0;
+  let cx = window.innerWidth / 2;
+  let cy = window.innerHeight / 2;
+  let ticking = false;
+
+  function updateParallax(){
+    const dx = (tx - cx) / cx;
+    const dy = (ty - cy) / cy;
+
+    layers.forEach(layer => {
+      const depth = parseFloat(layer.dataset.depth || 0);
+      const moveX = dx * 28 * depth * 10;
+      const moveY = dy * 22 * depth * 10;
+      layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+    });
+
+    ticking = false;
+  }
+
+  if(!prefersReduced){
+    window.addEventListener('mousemove', (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      if(!ticking){
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
+    window.addEventListener('deviceorientation', (e) => {
+      const gamma = e.gamma || 0;
+      const beta = e.beta || 0;
+      tx = cx + gamma * 8;
+      ty = cy + beta * 4;
+      if(!ticking){
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+  }
+
+  /* SPACE PARTICLES */
+  const canvas = document.getElementById('space-particles');
+  const ctx = canvas.getContext('2d');
+
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  let particles = [];
+  const count = Math.min(120, Math.floor((w * h) / 16000));
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cx = w / 2;
+    cy = h / 2;
+    createParticles();
+  }
+
+  function rand(min, max){
+    return Math.random() * (max - min) + min;
+  }
+
+  function createParticles(){
+    particles = [];
+    for(let i = 0; i < count; i++){
+      particles.push({
+        x: rand(0, w),
+        y: rand(0, h),
+        r: rand(0.6, 2.2),
+        vx: rand(-0.12, 0.12),
+        vy: rand(-0.16, 0.16),
+        a: rand(0.2, 0.95),
+        pulse: rand(0.003, 0.012),
+        hue: Math.random() > 0.72 ? 'pink' : (Math.random() > 0.45 ? 'cyan' : 'white')
+      });
+    }
+  }
+
+  function drawParticle(p){
+    let color;
+    if(p.hue === 'cyan') color = `rgba(110,231,255,${p.a})`;
+    else if(p.hue === 'pink') color = `rgba(255,79,216,${p.a})`;
+    else color = `rgba(255,255,255,${p.a})`;
+
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = color;
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  function connectParticles(){
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i + 1; j < particles.length; j++){
+        const a = particles[i];
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if(dist < 110){
+          const alpha = (1 - dist / 110) * 0.12;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(140,190,255,${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate(){
+    ctx.clearRect(0, 0, w, h);
+
+    for(const p of particles){
+      p.x += p.vx;
+      p.y += p.vy;
+      p.a += p.pulse;
+
+      if(p.a > 1 || p.a < 0.15) p.pulse *= -1;
+      if(p.x < -20) p.x = w + 20;
+      if(p.x > w + 20) p.x = -20;
+      if(p.y < -20) p.y = h + 20;
+      if(p.y > h + 20) p.y = -20;
+
+      drawParticle(p);
+    }
+
+    connectParticles();
+
+    if(!prefersReduced){
+      requestAnimationFrame(animate);
+    }
+  }
+
+  createParticles();
+  if(!prefersReduced) animate();
+  else {
+    for(const p of particles) drawParticle(p);
+  }
+
+  window.addEventListener('resize', resize);
+})();
 </script>
 
 </body>
