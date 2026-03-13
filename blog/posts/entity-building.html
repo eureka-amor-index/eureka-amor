@@ -600,6 +600,29 @@ body::after{
     scroll-behavior:auto !important;
   }
 }
+
+    #space-particles{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+
+.parallax-a,
+.parallax-b,
+.parallax-c{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  will-change:transform;
+}
+
+.site{
+  position:relative;
+  z-index:1;
+}
 </style>
 
 </head>
@@ -924,28 +947,6 @@ body::after{
 })();
 
 
-  #space-particles{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:0;
-}
-
-.parallax-a,
-.parallax-b,
-.parallax-c{
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  will-change:transform;
-}
-
-.site{
-  position:relative;
-  z-index:1;
-}
   
 </script>
 
