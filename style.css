@@ -791,10 +791,15 @@ body.glitch .terminal{
 }
 
 /* Links */
-.connections{ margin: 52px 0 0; }
+.connections{
+  margin: 64px auto 0;
+  max-width: 1200px;   /* controla el ancho total de la sección */
+  padding: 0 28px;     /* aire lateral */
+}
+
 .connections h3{
   text-align:center;
-  margin:0 0 14px;
+  margin:0 0 18px;
   color: rgb(var(--cyan));
   font-family: "Rubik Mono One", ui-monospace, monospace;
   font-size: 18px;
@@ -802,40 +807,60 @@ body.glitch .terminal{
 }
 
 
+/* GRID */
+
 .link-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
 
-  max-width: 1000px;   /* limita el ancho */
-  margin: 0 auto;      /* centra la grid */
-  padding: 0 20px;     /* aire lateral */
+  /* tarjetas un poco más grandes */
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+  gap: 22px;           /* más espacio entre cards */
+
+  max-width: 1100px;   /* evita que toque los bordes */
+  margin: 0 auto;      /* centra */
 }
 
+
+/* CARD */
 
 .link-card{
   border-radius: 18px;
   border: 1px solid rgb(var(--edge) / 0.12);
   background: rgb(var(--glass) / 0.05);
-  padding: 16px 14px;
+  padding: 20px 16px;
   text-decoration:none;
   color: rgb(var(--ink) / 0.92);
+
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:10px;
-  transition: transform .14s ease, border-color .14s ease;
+
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
+
 .link-card:hover{
-  transform: translateY(-2px);
-  border-color: rgb(var(--cyan) / .35);
+  transform: translateY(-3px);
+  border-color: rgb(var(--cyan) / .45);
+
+  /* glow cyberpunk */
+  box-shadow:
+    0 0 14px rgb(var(--cyan) / 0.18),
+    inset 0 0 12px rgb(var(--cyan) / 0.08);
 }
-.link-icon{ font-size: 28px; }
+
+
+.link-icon{
+  font-size: 28px;
+}
+
 .link-text{
   font-family: "Anton", system-ui, sans-serif;
   letter-spacing:.06em;
   color: rgb(var(--cyan));
 }
+
 
 /* Footer */
 .footer{
