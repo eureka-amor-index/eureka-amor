@@ -800,11 +800,19 @@ body.glitch .terminal{
   font-size: 18px;
   letter-spacing:.06em;
 }
+
+
 .link-grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 12px;
+  gap: 16px;
+
+  max-width: 1000px;   /* limita el ancho */
+  margin: 0 auto;      /* centra la grid */
+  padding: 0 20px;     /* aire lateral */
 }
+
+
 .link-card{
   border-radius: 18px;
   border: 1px solid rgb(var(--edge) / 0.12);
