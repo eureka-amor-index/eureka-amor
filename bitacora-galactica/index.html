@@ -31,6 +31,98 @@
     rel="stylesheet"
   />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://eurekaamor.com/bitacora-galactica/#webpage",
+        "url": "https://eurekaamor.com/bitacora-galactica/",
+        "name": "Bitácora Galáctica de una Princesa Espacial | Eureka Amor",
+        "description": "Bitácora Galáctica de una Princesa Espacial, un libro de Venus Victoria aka Eureka Amor.",
+        "inLanguage": "es",
+        "isPartOf": {
+          "@id": "https://eurekaamor.com/#website"
+        },
+        "about": {
+          "@id": "https://eurekaamor.com/bitacora-galactica/#book"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://eurekaamor.com/bitacora-galactica-de-una-princesa-espacial.png"
+        },
+        "breadcrumb": {
+          "@id": "https://eurekaamor.com/bitacora-galactica/#breadcrumb"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://eurekaamor.com/#website",
+        "url": "https://eurekaamor.com/",
+        "name": "Eureka Amor",
+        "inLanguage": "es"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://eurekaamor.com/#venus-victoria",
+        "name": "Venus Victoria",
+        "alternateName": [
+          "Eureka Amor"
+        ],
+        "url": "https://eurekaamor.com/"
+      },
+      {
+        "@type": "Book",
+        "@id": "https://eurekaamor.com/bitacora-galactica/#book",
+        "name": "Bitácora Galáctica de una Princesa Espacial",
+        "alternateName": "Bitacora Galactica de una Princesa Espacial",
+        "bookFormat": "https://schema.org/EBook",
+        "inLanguage": "es",
+        "numberOfPages": 499,
+        "author": {
+          "@id": "https://eurekaamor.com/#venus-victoria"
+        },
+        "creator": {
+          "@id": "https://eurekaamor.com/#venus-victoria"
+        },
+        "url": "https://eurekaamor.com/bitacora-galactica/",
+        "image": "https://eurekaamor.com/bitacora-galactica-de-una-princesa-espacial.png",
+        "description": "Una travesía íntima, cósmica y emocional entre memoria, identidad, amor, tiempo y universos interiores.",
+        "encoding": {
+          "@type": "MediaObject",
+          "contentUrl": "https://eurekaamor.com/books/bitacora-galactica-princesa-espacial.pdf",
+          "encodingFormat": "application/pdf",
+          "name": "Bitácora Galáctica de una Princesa Espacial PDF"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Eureka Amor",
+          "url": "https://eurekaamor.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://eurekaamor.com/bitacora-galactica/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://eurekaamor.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bitácora Galáctica",
+            "item": "https://eurekaamor.com/bitacora-galactica/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --bg-1: #050816;
@@ -155,6 +247,12 @@
       padding: 42px 0 60px;
       position: relative;
       z-index: 1;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 18px;
     }
 
     .hero {
@@ -299,6 +397,25 @@
     .btn-secondary:hover {
       border-color: rgba(255,255,255,0.34);
       background: rgba(255,255,255,0.08);
+    }
+
+    .btn-back {
+      border-color: rgba(155,107,255,0.34);
+      background:
+        linear-gradient(135deg, rgba(255,79,216,0.12), rgba(155,107,255,0.14), rgba(99,243,255,0.1));
+      box-shadow:
+        0 0 16px rgba(155,107,255,0.12),
+        0 0 24px rgba(99,243,255,0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+    }
+
+    .btn-back:hover {
+      border-color: rgba(99,243,255,0.42);
+      box-shadow:
+        0 0 22px rgba(155,107,255,0.18),
+        0 0 30px rgba(99,243,255,0.14);
     }
 
     .book-card {
@@ -508,6 +625,10 @@
   </div>
 
   <main class="wrap">
+    <div class="top-nav">
+      <a class="btn btn-back" href="https://eurekaamor.com/">← Back to EurekaAmor.com</a>
+    </div>
+
     <section class="hero">
       <div class="badge">archivo estelar // transmisión abierta</div>
 
