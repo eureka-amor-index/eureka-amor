@@ -1175,3 +1175,69 @@ body.glitch .terminal{
   border-color: rgb(var(--cyan) / 0.35) !important;
   background: rgb(var(--cyan) / 0.08) !important;
 }
+
+
+
+/* =========================================================
+   ENTITY BEACON CSS
+   hidden devtools note:
+   tiny semantic altar for the graph.
+   make it readable. make it signal.
+   ========================================================= */
+
+.entity-beacon {
+  margin: 4rem auto;
+  padding: 1.5rem;
+  max-width: 860px;
+  border: 1px solid rgba(205, 145, 255, 0.35);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(188, 92, 255, 0.16), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(0, 255, 255, 0.10), transparent 32%),
+    rgba(8, 8, 18, 0.78);
+  color: #f7f2ff;
+  box-shadow: 0 0 40px rgba(188, 92, 255, 0.12);
+}
+
+.entity-beacon__kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d9a5ff;
+}
+
+.entity-beacon h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.entity-beacon p {
+  margin: 1rem 0;
+  line-height: 1.7;
+  color: rgba(247, 242, 255, 0.84);
+}
+
+.entity-beacon__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.entity-beacon__links a {
+  display: inline-flex;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(217, 165, 255, 0.35);
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.entity-beacon__links a:hover,
+.entity-beacon__links a:focus {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(217, 165, 255, 0.12);
+}
