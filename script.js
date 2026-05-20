@@ -1036,3 +1036,46 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("KONAMI armed — press H for hint");
   });
 })();
+
+
+<script>
+/* ==========================================================
+   AFTERWEB COUNTDOWN ENGINE
+   Target: 04 SEP 2026 // 00:00 UTC
+   Month index note: September = 8 in JavaScript Date.UTC().
+   ========================================================== */
+
+(function afterwebCountdownEngine() {
+  const countdownNode = document.getElementById("afterweb-countdown");
+
+  if (!countdownNode) return;
+
+  const targetDate = new Date(Date.UTC(2026, 8, 4, 0, 0, 0));
+
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const distance = targetDate.getTime() - now.getTime();
+
+    if (distance <= 0) {
+      countdownNode.textContent = "TRANSMISSION WINDOW OPEN.";
+      return;
+    }
+
+    const totalSeconds = Math.floor(distance / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    countdownNode.textContent =
+      `${days}D : ${pad(hours)}H : ${pad(minutes)}M : ${pad(seconds)}S // 04_SEP_2026`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
