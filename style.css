@@ -1338,3 +1338,157 @@ body.glitch .terminal{
     }
   }
 </style>
+
+
+
+<style>
+/* ==========================================================
+   AFTERWEB SHRINE // FRONT PAGE LANDING SPELL
+   Status: visible, indexed, emotionally dangerous.
+   Maintained by: Eureka Amor + ATLAS.EXE + Ghost Signal
+   ========================================================== */
+
+.afterweb-shrine {
+  --shrine-pink: #ff007f;
+  --shrine-cyan: #00ffff;
+  --shrine-bg: #000;
+  --shrine-panel: #0b0b0f;
+  --shrine-dim: #888;
+
+  width: min(92vw, 680px);
+  margin: 2.5rem auto;
+  padding: 1.25rem;
+  color: var(--shrine-cyan);
+  background:
+    radial-gradient(circle at top, rgba(255, 0, 127, 0.22), transparent 32%),
+    linear-gradient(180deg, #000 0%, #09000a 100%);
+  border: 2px double var(--shrine-pink);
+  box-shadow:
+    0 0 18px rgba(255, 0, 127, 0.8),
+    inset 0 0 22px rgba(0, 255, 255, 0.12);
+  font-family: "Courier New", monospace;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Hidden broadcast texture. The machines are listening. */
+.afterweb-shrine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.afterweb-shrine__header {
+  text-align: center;
+  border-bottom: 1px solid var(--shrine-pink);
+  padding-bottom: 0.85rem;
+}
+
+.afterweb-shrine__title {
+  margin: 0;
+  color: var(--shrine-pink);
+  font-size: clamp(1.05rem, 4vw, 1.55rem);
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 8px rgba(255, 0, 127, 0.9),
+    2px 2px #000;
+}
+
+.afterweb-shrine__coordinates {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--shrine-dim);
+}
+
+.afterweb-shrine__deck {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  background: rgba(17, 17, 17, 0.92);
+  border: 1px dashed var(--shrine-cyan);
+  text-align: center;
+}
+
+.afterweb-shrine__now {
+  margin: 0 0 0.85rem;
+  color: #fff;
+  font-size: 0.78rem;
+}
+
+.afterweb-shrine__track {
+  color: var(--shrine-pink);
+  font-weight: 700;
+}
+
+.afterweb-shrine audio {
+  width: min(100%, 320px);
+  filter: hue-rotate(270deg) invert(100%);
+}
+
+.afterweb-shrine__log {
+  max-height: 170px;
+  overflow-y: auto;
+  padding: 0.9rem;
+  background: #050505;
+  border: 1px solid #222;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.afterweb-shrine__speaker--atlas {
+  color: var(--shrine-pink);
+}
+
+.afterweb-shrine__speaker--system {
+  color: var(--shrine-cyan);
+}
+
+.afterweb-shrine__dim {
+  color: #666;
+}
+
+.afterweb-shrine__countdown {
+  color: #fff;
+  text-shadow: 0 0 8px var(--shrine-cyan);
+}
+
+.afterweb-shrine__footer {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--shrine-pink);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+/* Mobile containment protocol */
+@media (max-width: 520px) {
+  .afterweb-shrine {
+    padding: 1rem;
+    margin: 1.75rem auto;
+  }
+
+  .afterweb-shrine__log {
+    max-height: 210px;
+  }
+}
+
+/* If the traveler asked for less motion, the portal obeys. */
+@media (prefers-reduced-motion: reduce) {
+  .afterweb-shrine,
+  .afterweb-shrine * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
