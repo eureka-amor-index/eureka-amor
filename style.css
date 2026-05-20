@@ -1241,3 +1241,100 @@ body.glitch .terminal{
   border-color: rgba(255, 255, 255, 0.75);
   background: rgba(217, 165, 255, 0.12);
 }
+
+  /* =========================================================
+    PHANTOM GATE CSS
+    It does not shout.
+    It waits.
+  ========================================================== */
+
+  .phantom-nebula-gate {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 10px;
+    border: 1px solid rgba(170, 210, 255, 0.18);
+    border-radius: 999px;
+
+    color: rgba(210, 230, 255, 0.18);
+    background: rgba(8, 10, 22, 0.18);
+    text-decoration: none;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+
+    opacity: 0.22;
+    filter: blur(0.4px);
+    transform: translateY(0);
+
+    transition:
+      opacity 0.4s ease,
+      color 0.4s ease,
+      border-color 0.4s ease,
+      background 0.4s ease,
+      filter 0.4s ease,
+      transform 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .phantom-nebula-gate:hover,
+  .phantom-nebula-gate:focus {
+    opacity: 1;
+    color: rgba(235, 245, 255, 0.95);
+    border-color: rgba(160, 220, 255, 0.65);
+    background: rgba(12, 18, 38, 0.72);
+    filter: blur(0);
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 18px rgba(120, 190, 255, 0.22),
+      0 0 42px rgba(180, 130, 255, 0.14);
+  }
+
+  .phantom-nebula-symbol {
+    font-size: 14px;
+    animation: nebulaPulse 4.8s ease-in-out infinite;
+  }
+
+  .phantom-nebula-text {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition: max-width 0.5s ease, opacity 0.5s ease;
+  }
+
+  .phantom-nebula-gate:hover .phantom-nebula-text,
+  .phantom-nebula-gate:focus .phantom-nebula-text {
+    max-width: 90px;
+    opacity: 1;
+  }
+
+  @keyframes nebulaPulse {
+    0%, 100% {
+      opacity: 0.35;
+      text-shadow: 0 0 4px rgba(150, 210, 255, 0.2);
+    }
+
+    50% {
+      opacity: 1;
+      text-shadow:
+        0 0 8px rgba(150, 210, 255, 0.8),
+        0 0 18px rgba(190, 130, 255, 0.5);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .phantom-nebula-gate {
+      right: 12px;
+      bottom: 12px;
+      font-size: 10px;
+      padding: 7px 9px;
+    }
+  }
+</style>
