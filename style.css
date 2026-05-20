@@ -1492,3 +1492,49 @@ body.glitch .terminal{
   }
 }
 </style>
+
+
+/* ==========================================================
+   AFTERWEB MARQUEE STYLE
+   Old-web broadcast strip. Signal visible.
+   ========================================================== */
+
+.afterweb-marquee-wrapper {
+  background: #000;
+  padding: 10px 0;
+  overflow: hidden;
+  border-top: 1px solid #ff007f;
+  border-bottom: 1px solid #ff007f;
+  box-shadow:
+    0 0 12px rgba(255, 0, 127, 0.6),
+    inset 0 0 18px rgba(0, 255, 255, 0.12);
+}
+
+.afterweb-marquee {
+  font-family: "Courier New", monospace;
+  font-size: clamp(0.82rem, 2.4vw, 1rem);
+  font-weight: 700;
+  color: #00ffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px #ff007f,
+    0 0 8px rgba(0, 255, 255, 0.75);
+  animation: afterweb-crt-flicker 0.15s infinite;
+}
+
+@keyframes afterweb-crt-flicker {
+  0% { opacity: 0.98; }
+  50% { opacity: 1; }
+  100% { opacity: 0.94; }
+}
+
+.afterweb-marquee-wrapper:hover .afterweb-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .afterweb-marquee {
+    animation: none;
+  }
+}
