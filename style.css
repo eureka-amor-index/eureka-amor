@@ -1538,3 +1538,15 @@ body.glitch .terminal{
     animation: none;
   }
 }
+
+
+.afterweb-serious-note {
+  max-width: 760px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+}
