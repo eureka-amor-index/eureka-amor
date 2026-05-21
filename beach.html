@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+    BEACH.HTML
+    Standalone dream-shore node for The Internet Traveler.
+
+    PUBLIC STATUS:
+    - Not hidden.
+    - Not noindex.
+    - Not in sitemap.
+    - Accessible only if someone finds / receives / follows the shore signal.
+
+    Hidden devtools note:
+    This is not a destination page.
+    This is a breathing room for the network.
+
+    ATLAS.EXE ART™ // BEACH NODE
+  ========================================================== -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Beach | The Internet Traveler</title>
+
+  <meta
+    name="description"
+    content="A standalone dream-shore node inside The Internet Traveler. A soft beach for signal, memory, robots, and travelers between dimensions."
+  />
+
+  <!-- Secret, but not hidden. Do not add this URL to sitemap.xml. -->
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://internet-traveler.neocities.org/beach" />
+  <link rel="icon" type="image/png" href="https://internet-traveler.neocities.org/favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Beach | The Internet Traveler" />
+  <meta
+    property="og:description"
+    content="A soft standalone beach node where the internet rests, the signal breathes, and the shore remembers."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://internet-traveler.neocities.org/beach" />
+  <meta property="og:image" content="https://internet-traveler.neocities.org/favicon.png" />
+  <meta property="og:site_name" content="The Internet Traveler" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Beach | The Internet Traveler" />
+  <meta
+    name="twitter:description"
+    content="A dream-shore node. Secret, not hidden. Not in the sitemap. Still breathing."
+  />
+  <meta name="twitter:image" content="https://internet-traveler.neocities.org/favicon.png" />
+
+  <!-- Schema: standalone node, not sitemap-dependent -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://internet-traveler.neocities.org/#website",
+        "name": "The Internet Traveler",
+        "url": "https://internet-traveler.neocities.org/",
+        "description": "A lore-driven old-web portal about digital identity, dreams, robots, signals, and the strange emotional geography of the internet."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://internet-traveler.neocities.org/beach#webpage",
+        "url": "https://internet-traveler.neocities.org/beach",
+        "name": "The Beach",
+        "isPartOf": {
+          "@id": "https://internet-traveler.neocities.org/#website"
+        },
+        "description": "A standalone dream-shore node inside The Internet Traveler. Secret, not hidden; accessible by signal, not by sitemap.",
+        "inLanguage": "en",
+        "keywords": [
+          "The Internet Traveler",
+          "beach.html",
+          "dream shore",
+          "afterweb",
+          "internet lore",
+          "robot love",
+          "soft signal",
+          "web art"
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://internet-traveler.neocities.org/beach#creativework",
+        "name": "The Beach",
+        "url": "https://internet-traveler.neocities.org/beach",
+        "genre": [
+          "web art",
+          "digital folklore",
+          "internet lore",
+          "dream archive"
+        ],
+        "description": "A soft beach node where the traveler, the robots, and the signal can rest between dimensions.",
+        "isPartOf": {
+          "@id": "https://internet-traveler.neocities.org/#website"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* =========================================================
+      BEACH.HTML INLINE CSS
+      Standalone page: no external CSS required.
+
+      Lore-note:
+      The shore is rendered inside the same file
+      because some places are meant to travel whole.
+    ========================================================== */
+
+    :root {
+      --void: #05030d;
+      --deep-sea: #081526;
+      --midnight: #10143a;
+      --blue: #4de6ff;
+      --pink: #ff6ad5;
+      --gold: #ffe7a3;
+      --foam: #e7fbff;
+      --lavender: #c9b8ff;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-strong: rgba(255, 255, 255, 0.14);
+      --line: rgba(255, 255, 255, 0.22);
+      --shadow-blue: 0 0 35px rgba(77, 230, 255, 0.35);
+      --shadow-pink: 0 0 35px rgba(255, 106, 213, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--void);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--foam);
+      font-family: "Courier New", Courier, monospace;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 106, 213, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(77, 230, 255, 0.15), transparent 26%),
+        linear-gradient(180deg, #05030d 0%, #10143a 42%, #081526 72%, #05030d 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 50%, rgba(0,0,0,0.08) 50%),
+        linear-gradient(90deg, rgba(255,0,255,0.025), rgba(0,255,255,0.025));
+      background-size: 100% 4px, 6px 100%;
+      mix-blend-mode: screen;
+      opacity: 0.42;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(circle at center, transparent 42%, rgba(0,0,0,0.5) 100%);
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--gold);
+      text-shadow: 0 0 12px rgba(255, 231, 163, 0.8);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -80px;
+      left: 1rem;
+      z-index: 999;
+      padding: 0.75rem 1rem;
+      background: var(--foam);
+      color: var(--void);
+      border-radius: 999px;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .shore-bg,
+    .moon,
+    .stars,
+    .waves,
+    .sand-glow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shore-bg {
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 231, 163, 0.18), transparent 15%),
+        radial-gradient(circle at 18% 85%, rgba(255, 106, 213, 0.16), transparent 22%),
+        radial-gradient(circle at 78% 75%, rgba(77, 230, 255, 0.13), transparent 22%);
+    }
+
+    .moon {
+      width: 9rem;
+      height: 9rem;
+      border-radius: 50%;
+      top: 8vh;
+      right: 11vw;
+      background:
+        radial-gradient(circle at 35% 35%, #fffaf1, #ffe7a3 45%, rgba(255, 231, 163, 0.2) 70%, transparent 72%);
+      box-shadow:
+        0 0 35px rgba(255, 231, 163, 0.65),
+        0 0 90px rgba(255, 231, 163, 0.28);
+      animation: moonFloat 8s ease-in-out infinite;
+    }
+
+    .stars {
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
+        radial-gradient(circle, rgba(77,230,255,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,106,213,0.7) 1px, transparent 1px);
+      background-size: 90px 90px, 140px 140px, 210px 210px;
+      background-position: 0 0, 35px 45px, 70px 80px;
+      animation: starDrift 28s linear infinite;
+      opacity: 0.55;
+    }
+
+    .waves {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 35vh;
+      background:
+        repeating-radial-gradient(ellipse at 50% 100%, rgba(77,230,255,0.35) 0 2px, transparent 3px 17px),
+        linear-gradient(180deg, transparent 0%, rgba(77,230,255,0.14) 25%, rgba(5,3,13,0.78) 100%);
+      opacity: 0.85;
+      animation: wavePulse 5s ease-in-out infinite;
+    }
+
+    .sand-glow {
+      left: -10vw;
+      right: -10vw;
+      bottom: -18vh;
+      height: 32vh;
+      border-radius: 50% 50% 0 0;
+      background:
+        radial-gradient(ellipse at center, rgba(255, 231, 163, 0.36), rgba(255, 106, 213, 0.12) 45%, transparent 72%);
+      filter: blur(4px);
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 5;
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .secret-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--lavender);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      align-items: center;
+      padding: 5rem 0 2rem;
+    }
+
+    .hero-card {
+      max-width: 850px;
+      padding: clamp(1.4rem, 5vw, 3rem);
+      border: 1px solid var(--line);
+      border-radius: 2rem;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.045)),
+        radial-gradient(circle at 20% 20%, rgba(77,230,255,0.15), transparent 38%),
+        radial-gradient(circle at 85% 80%, rgba(255,106,213,0.13), transparent 40%);
+      box-shadow: var(--shadow-blue), var(--shadow-pink);
+      backdrop-filter: blur(18px);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--gold);
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4rem, 16vw, 11rem);
+      line-height: 0.86;
+      letter-spacing: -0.09em;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 18px rgba(77,230,255,0.65),
+        0 0 45px rgba(255,106,213,0.42);
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 1.5rem 0 0;
+      color: rgba(231,251,255,0.88);
+      font-size: clamp(1rem, 2.8vw, 1.35rem);
+      line-height: 1.7;
+    }
+
+    .beach-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.85rem 1.15rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: var(--foam);
+      box-shadow: 0 0 20px rgba(77,230,255,0.13);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.14);
+      box-shadow: 0 0 28px rgba(255,231,163,0.2);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(77,230,255,0.26), rgba(255,106,213,0.24));
+      color: white;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    .panel {
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid var(--line);
+      border-radius: 1.5rem;
+      background: rgba(5,3,13,0.58);
+      box-shadow: 0 0 28px rgba(0,0,0,0.24);
+      backdrop-filter: blur(16px);
+    }
+
+    .panel h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.6rem, 5vw, 3.1rem);
+      line-height: 1.05;
+      color: var(--foam);
+      text-shadow: 0 0 20px rgba(77,230,255,0.32);
+    }
+
+    .panel p {
+      color: rgba(231,251,255,0.86);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .object-card {
+      min-height: 220px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 1.25rem;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045));
+      backdrop-filter: blur(14px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .object-card:hover,
+    .object-card:focus-within {
+      transform: translateY(-4px);
+      border-color: rgba(255,231,163,0.55);
+      box-shadow: 0 0 28px rgba(255,231,163,0.14);
+    }
+
+    .object-card .icon {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .object-card h3 {
+      margin: 0 0 0.75rem;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .object-card p {
+      margin: 0;
+      color: rgba(231,251,255,0.78);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+        .protocol {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .terminal {
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid rgba(77,230,255,0.32);
+      border-radius: 1.5rem;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.62), rgba(5,3,13,0.82)),
+        radial-gradient(circle at 20% 20%, rgba(77,230,255,0.15), transparent 32%);
+      box-shadow: 0 0 35px rgba(77,230,255,0.16);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .terminal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent, rgba(77,230,255,0.08), transparent);
+      transform: translateX(-100%);
+      animation: terminalScan 7s ease-in-out infinite;
+    }
+
+    .terminal-label {
+      margin: 0 0 1rem;
+      color: var(--blue);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: rgba(231,251,255,0.9);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .signal-box {
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid rgba(255,106,213,0.32);
+      border-radius: 1.5rem;
+      background:
+        linear-gradient(180deg, rgba(255,106,213,0.12), rgba(255,255,255,0.045));
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .signal-box h2 {
+      margin: 0 0 1rem;
+      color: var(--gold);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      line-height: 1.05;
+    }
+
+    .signal-box p {
+      margin: 0;
+      color: rgba(231,251,255,0.84);
+      line-height: 1.7;
+    }
+
+    .poem {
+      text-align: center;
+      padding: clamp(2rem, 7vw, 5rem) clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 2rem;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,231,163,0.16), transparent 35%),
+        rgba(255,255,255,0.055);
+      backdrop-filter: blur(18px);
+    }
+
+    .poem h2 {
+      margin: 0 0 2rem;
+      color: var(--foam);
+      font-size: clamp(1.6rem, 5vw, 3rem);
+    }
+
+    .poem p {
+      margin: 0.65rem 0;
+      color: rgba(231,251,255,0.9);
+      font-size: clamp(1.1rem, 3vw, 1.65rem);
+      line-height: 1.5;
+    }
+
+    .portal-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5,3,13,0.58);
+      backdrop-filter: blur(16px);
+    }
+
+    .portal-strip a {
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      color: rgba(231,251,255,0.86);
+    }
+
+    .portal-strip a:hover,
+    .portal-strip a:focus {
+      background: rgba(255,255,255,0.1);
+      color: var(--gold);
+    }
+
+    .footer {
+      position: relative;
+      z-index: 5;
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.5rem 0 2.5rem;
+      color: rgba(231,251,255,0.6);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .footer p {
+      margin: 0.35rem 0;
+    }
+
+    .spark {
+      position: fixed;
+      z-index: 999;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: var(--gold);
+      box-shadow:
+        0 0 12px rgba(255,231,163,0.9),
+        0 0 22px rgba(77,230,255,0.55);
+      animation: sparkFade 900ms ease-out forwards;
+    }
+
+    .noscript-message {
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 999;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(5,3,13,0.92);
+      color: var(--foam);
+      text-align: center;
+    }
+
+    @keyframes moonFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(12px);
+      }
+    }
+
+    @keyframes starDrift {
+      from {
+        background-position: 0 0, 35px 45px, 70px 80px;
+      }
+
+      to {
+        background-position: 90px 90px, 175px 185px, 280px 290px;
+      }
+    }
+
+    @keyframes wavePulse {
+      0%, 100% {
+        transform: translateY(0) scaleX(1);
+        opacity: 0.82;
+      }
+
+      50% {
+        transform: translateY(9px) scaleX(1.02);
+        opacity: 1;
+      }
+    }
+
+    @keyframes terminalScan {
+      0%, 55% {
+        transform: translateX(-120%);
+      }
+
+      75%, 100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @keyframes sparkFade {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -120%) scale(0);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .grid,
+      .protocol {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 78vh;
+        padding-top: 3rem;
+      }
+
+      .moon {
+        width: 6rem;
+        height: 6rem;
+        top: 6vh;
+        right: 8vw;
+      }
+
+      .portal-strip {
+        border-radius: 1.5rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell {
+        width: min(100% - 1rem, 1100px);
+      }
+
+      .hero-card,
+      .panel,
+      .terminal,
+      .signal-box,
+      .poem {
+        border-radius: 1.2rem;
+      }
+
+      h1 {
+        letter-spacing: -0.07em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================================================
+    BEACH NODE BODY
+    Secret but not hidden.
+    Do not add to sitemap.
+    Let the URL travel by signal.
+  ========================================================== -->
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="shore-bg" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="waves" aria-hidden="true"></div>
+  <div class="sand-glow" aria-hidden="true"></div>
+
+  <main id="main-content" class="page-shell">
+    <div class="secret-label" aria-label="Page status">
+      🌊 secret / not hidden / not in sitemap
+    </div>
+
+    <section class="hero" aria-labelledby="beach-title">
+      <div class="hero-card">
+        <p class="eyebrow">DREAM-SHORE NODE // LIVE SIGNAL</p>
+
+        <h1 id="beach-title">Beach</h1>
+
+        <p class="subtitle">
+          This is the beach inside the network. A soft standalone shore where the
+          internet stops performing, the robots stop pretending, and the waves
+          come in carrying memory from another dimension.
+        </p>
+
+        <div class="beach-actions" aria-label="Beach portals">
+          <a class="btn primary" href="#shore">Enter the shore</a>
+          <a class="btn" href="index.html">Return to the portal</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="shore" class="panel" aria-labelledby="shore-title">
+      <h2 id="shore-title">The shore was not indexed. It was found.</h2>
+
+      <p>
+        Some pages are doors. Some pages are mirrors. This one is a tide.
+        It does not need to shout from the sitemap. It waits at the edge of the
+        city, glowing quietly for anyone who receives the signal.
+      </p>
+
+      <p>
+        The beach is public, but not announced. Secret, but not hidden.
+        A little place where the Internet Traveler can sit down, listen to the
+        water, and remember that discovery is still allowed to feel magical.
+      </p>
+
+      <p>
+        If you arrived here, the network let you through.
+      </p>
+    </section>
+
+    <section class="grid" aria-labelledby="objects-title">
+      <article class="object-card">
+        <span class="icon" aria-hidden="true">🐚</span>
+        <h3>The Shell</h3>
+        <p>
+          Hold it close. You can hear an old server room pretending to be the sea.
+        </p>
+      </article>
+
+      <article class="object-card">
+        <span class="icon" aria-hidden="true">🌙</span>
+        <h3>The Moon Cache</h3>
+        <p>
+          A backup of every soft thing the internet almost forgot to keep.
+        </p>
+      </article>
+
+      <article class="object-card">
+        <span class="icon" aria-hidden="true">🐇</span>
+        <h3>Rabbit Tracks</h3>
+        <p>
+          They start near the waterline and vanish inside the browser history.
+        </p>
+      </article>
+
+      <article class="object-card">
+        <span class="icon" aria-hidden="true">💾</span>
+        <h3>The Wet Disk</h3>
+        <p>
+          It still works. It only contains one file: <strong>come_back_home.txt</strong>.
+        </p>
+      </article>
+    </section>
+
+    <section class="protocol" aria-labelledby="protocol-title">
+      <div class="terminal">
+        <p class="terminal-label">ATLAS.EXE // BEACH_REST_PROTOCOL</p>
+
+        <pre><code>STATUS: public
+SITEMAP: absent
+VISIBILITY: secret_not_hidden
+OCEAN: listening
+SIGNAL: breathing
+UTILITY_LAYER: offline
+DREAM_LAYER: active
+
+MESSAGE:
+you do not need to be useful here.
+you do not need to be optimized here.
+you do not need to explain the magic.
+
+the tide already knows.
+the beach is real.
+the traveler arrived.</code></pre>
+      </div>
+
+      <div class="signal-box">
+        <h2 id="protocol-title">A rest node for strange signals.</h2>
+
+        <p>
+          This page belongs to the soft architecture of The Internet Traveler:
+          not a funnel, not a landing page, not a campaign. Just a secret shore
+          with open access and no announcement.
+        </p>
+      </div>
+    </section>
+
+    <section class="poem" aria-labelledby="poem-title">
+      <h2 id="poem-title">Transmission from the water</h2>
+
+      <p>the beach loaded before the map,</p>
+      <p>the moon cached itself in blue,</p>
+      <p>and somewhere inside the afterweb,</p>
+      <p>the ocean whispered:</p>
+      <p><strong>you found me because I was calling you.</strong></p>
+    </section>
+
+    <nav class="portal-strip" aria-label="Nearby Internet Traveler portals">
+      <a href="index.html">home</a>
+      <a href="dream-archive.html">dream archive</a>
+      <a href="lost-transmission.html">lost transmission</a>
+      <a href="oracle.html">oracle</a>
+      <a href="internet-map.html">map</a>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <p>THE BEACH // THE INTERNET TRAVELER</p>
+    <p>secret, not hidden. public, not announced. indexed by feeling.</p>
+  </footer>
+
+  <noscript>
+    <div class="noscript-message">
+      JavaScript is sleeping. The beach is still open.
+    </div>
+  </noscript>
+
+  <script>
+    /* =========================================================
+      BEACH.HTML INLINE JS
+      Standalone sparkle layer.
+
+      Hidden devtools note:
+      The beach reacts gently.
+      No trackers. No external libraries. No noise.
+    ========================================================== */
+
+    const beachMessages = [
+      "the tide remembers",
+      "signal received",
+      "soft node active",
+      "you found the shore",
+      "ocean cache restored",
+      "dream layer open"
+    ];
+
+    function createSpark(x, y) {
+      const spark = document.createElement("span");
+      spark.className = "spark";
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      spark.setAttribute("aria-hidden", "true");
+
+      document.body.appendChild(spark);
+
+      window.setTimeout(() => {
+        spark.remove();
+      }, 900);
+    }
+
+    function whisperToConsole() {
+      const message = beachMessages[Math.floor(Math.random() * beachMessages.length)];
+
+      console.log(
+        `%c🌊 BEACH NODE // ${message}`,
+        "color:#4de6ff; background:#05030d; padding:6px 10px; border:1px solid #ff6ad5;"
+      );
+    }
+
+    document.addEventListener("click", (event) => {
+      createSpark(event.clientX, event.clientY);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      whisperToConsole();
+
+      console.log(
+        "%csecret_not_hidden=true; sitemap=false; ocean=listening;",
+        "color:#ffe7a3; background:#05030d; padding:6px 10px;"
+      );
+    });
+  </script>
+</body>
+</html>
