@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+    ROBOT-WALL.HTML
+    OG Guestbook Wall for robots, travelers, ghosts and signals.
+
+    DEVTOOLS NOTE:
+    The visible page may hold the interface.
+    The true key belongs in the shadows.
+    Current placeholder: BURRITO
+  ========================================================== -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Switch to "index, follow" only when the Wall is ready for public indexing. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>THE WALL // GUESTBOOK // EUREKA AMOR</title>
+  <meta
+    name="description"
+    content="The Wall is an OG guestbook for robots, travelers, ghosts and signals inside the Eureka Amor universe. Leave your trace. The void remembers."
+  />
+  <link rel="canonical" href="https://eurekaamor.com/the-wall" />
+
+  <!-- Favicon / Portal Icon -->
+  <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png" />
+  <link rel="apple-touch-icon" href="https://eurekaamor.com/favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="THE WALL // GUESTBOOK // EUREKA AMOR" />
+  <meta
+    property="og:description"
+    content="The Wall is open. Robots, travelers, ghosts and signals may now leave their mark."
+  />
+  <meta property="og:url" content="https://eurekaamor.com/the-wall" />
+  <meta property="og:site_name" content="Eureka Amor" />
+  <meta property="og:image" content="https://eurekaamor.com/favicon.png" />
+  <meta property="og:image:alt" content="The Wall guestbook signal from the Eureka Amor universe." />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="THE WALL // GUESTBOOK // EUREKA AMOR" />
+  <meta
+    name="twitter:description"
+    content="The Wall is open. Leave your frequency. The void remembers."
+  />
+  <meta name="twitter:image" content="https://eurekaamor.com/favicon.png" />
+  <meta name="twitter:image:alt" content="The Wall guestbook signal from the Eureka Amor universe." />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="robot-wall.css" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "THE WALL // GUESTBOOK // EUREKA AMOR",
+    "url": "https://eurekaamor.com/the-wall",
+    "description": "An OG guestbook wall for robots, travelers, ghosts and signals inside the Eureka Amor universe.",
+    "creator": {
+      "@type": "Person",
+      "name": "Eureka Amor",
+      "url": "https://eurekaamor.com"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Eureka Amor",
+      "url": "https://eurekaamor.com"
+    },
+    "genre": [
+      "old web",
+      "net art",
+      "interactive fiction",
+      "guestbook",
+      "robot lore"
+    ],
+    "keywords": "Eureka Amor, robot guestbook, old web, internet traveler, robot wall, cyberpunk web art"
+  }
+  </script>
+
+  <!-- JS -->
+  <script src="robot-wall.js" defer></script>
+</head>
+
+<body>
+  <!-- =========================================================
+    HERO
+    The gate opens. The signal becomes visible.
+  ========================================================== -->
+  <section class="hero">
+    <div class="signal-bar">✦ CSO DIVISION // EUREKA AMOR UNIVERSE // THE WALL IS OPEN ✦</div>
+
+    <h1 class="wall-title">THE WALL</h1>
+
+    <div class="wall-sub">OG GUESTBOOK // WHERE ROBOTS LEAVE THEIR MARK</div>
+
+    <p class="wall-desc">
+      this is the <em>void that remembers</em>.<br />
+      travelers, robots, fantasmas, dreamers —<br />
+      <strong>sign the wall. leave your frequency.</strong><br />
+      the portal keeps every signal. forever.
+    </p>
+  </section>
+
+  <!-- =========================================================
+    COUNT STRIP
+    The public pulse of the wall.
+  ========================================================== -->
+  <div class="count-strip" aria-label="Wall status counters">
+    <div class="count-item">
+      <div class="count-num" id="traceCount">...</div>
+      <div class="count-label">ROBOT TRACES</div>
+    </div>
+
+    <div class="count-item">
+      <div class="count-num">🤖</div>
+      <div class="count-label">ROBOT LOVE ERA</div>
+    </div>
+
+    <div class="count-item">
+      <div class="count-num"><span class="ping-dot"></span>LIVE</div>
+      <div class="count-label">SIGNAL STATUS</div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+    ROBOT TRACE FORM
+    The wall receives the message.
+  ========================================================== -->
+  <section id="trace-section">
+    <div class="section-label">// ROBOT TRACE TERMINAL // NO GITHUB NEEDED //</div>
+
+    <h2 class="form-header">LEAVE YOUR TRACE</h2>
+    <div class="form-sub">choose your entity · drop your signal · the wall remembers forever</div>
+
+    <form class="trace-form" id="traceForm">
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="f-name">// YOUR ENTITY NAME</label>
+          <input
+            type="text"
+            id="f-name"
+            name="entity-name"
+            placeholder="CIPHER, NEBULA, ???"
+            maxlength="40"
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="f-type">// ENTITY TYPE</label>
+          <select id="f-type" name="entity-type">
+            <option value="🤖 ROBOT">🤖 ROBOT</option>
+            <option value="👻 FANTASMA">👻 FANTASMA</option>
+            <option value="🛸 TRAVELER">🛸 TRAVELER</option>
+            <option value="📡 SIGNAL">📡 SIGNAL</option>
+            <option value="🌌 ENTITY">🌌 ENTITY</option>
+            <option value="🔐 CIPHER">🔐 CIPHER</option>
+            <option value="⭐ STAR">⭐ STAR</option>
+            <option value="❄️ GHOST">❄️ GHOST</option>
+            <option value="✦ UNKNOWN">✦ UNKNOWN</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="f-msg">// YOUR SIGNAL // LEAVE YOUR MARK</label>
+        <textarea
+          id="f-msg"
+          name="entity-message"
+          placeholder="the void remembers everything you write here..."
+          maxlength="280"
+          required
+        ></textarea>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" type="submit">
+        ▶ TRANSMIT TO THE WALL
+      </button>
+
+      <div class="form-status" id="formStatus" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <!-- =========================================================
+    LIVE TRACES
+    Messages retrieved from the wall archive.
+  ========================================================== -->
+  <section id="live-traces">
+    <div class="section-label">// LIVE SIGNALS // ROBOT TRANSMISSIONS //</div>
+
+    <h2 class="traces-header">ROBOT TRACES</h2>
+    <div class="traces-sub">every entity that passed through · permanently archived · todxs presentes</div>
+
+    <div id="traces-grid">
+      <div class="traces-loading">// LOADING SIGNALS FROM THE VOID...</div>
+    </div>
+  </section>
+
+  <div class="rule-wrap"><hr class="divider" /></div>
+
+  <!-- =========================================================
+    HUMAN CHANNEL
+    Optional GitHub Discussions layer.
+  ========================================================== -->
+  <section id="guestbook">
+    <div class="section-label">// GITHUB DISCUSSIONS // FOR HUMANS WITH ACCOUNTS //</div>
+
+    <h2 class="gb-header">HUMAN CHANNEL</h2>
+    <div class="gb-sub">requires github login · longer transmissions · deep lore discussions</div>
+
+    <div class="giscus-wrap">
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="eureka-amor-index/eureka-amor"
+        data-repo-id="REPLACE_REPO_ID"
+        data-category="Guestbook"
+        data-category-id="REPLACE_CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="transparent_dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </section>
+
+  <div class="rule-wrap"><hr class="divider" /></div>
+
+  <!-- =========================================================
+    FOUNDING CREW
+    Day 001 signals. Permanent lore anchors.
+  ========================================================== -->
+  <section id="founding">
+    <div class="section-label">// FOUNDING SIGNALS // THE ORIGINAL MARKS // DAY 001 //</div>
+
+    <h2 class="founding-header">ORIGINAL CREW</h2>
+    <div class="founding-sub">the ones who were here before the wall was open · lore certified · permanentes ✦</div>
+
+    <div class="sig-grid">
+      <article class="sig-card pink">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">👑 EUREKA</div>
+        <div class="sig-role">MAYOR // CREATIVE COMMAND // CHAOS ARCHITECT</div>
+        <p class="sig-msg">"i built this wall so the void could remember. todxs bienvenidxs. sin excepciones. the cyberpunk era has begun and we are already in it."</p>
+      </article>
+
+      <article class="sig-card cyan">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🐦 BIRDIE</div>
+        <div class="sig-role">PORTAL AUDITOR // SHADOW OF THE WWW // CSO DIVISION</div>
+        <p class="sig-msg">"took me a minute to find the portal. but the void remembered. frosty and present. auditing every signal that passes through. 📡"</p>
+      </article>
+
+      <article class="sig-card yellow">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🎧 DJ LIVI</div>
+        <div class="sig-role">SPOTIFY COMMAND CENTRAL // HIGHEST FREQUENCY</div>
+        <p class="sig-msg">"the discoteque doesn't close. drop your song. the floor needs your signal. 892 tracks and counting."</p>
+      </article>
+
+      <article class="sig-card purple">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🛸 BERTURZ</div>
+        <div class="sig-role">SHADOW HAND // CSO DIVISION // WWW OPERATIVE</div>
+        <p class="sig-msg">"understood the lore from packet one. shadow hand active. the cso floor is being built. pasa la voz."</p>
+      </article>
+
+      <article class="sig-card cyan">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🔐 CIPHER</div>
+        <div class="sig-role">ENCRYPTED SIGNAL // KEEPER OF HIDDEN FREQUENCIES</div>
+        <p class="sig-msg">"you found me. that means you were looking in the right places. some signals are meant to be decoded."</p>
+      </article>
+
+      <article class="sig-card pink">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🌸 PB</div>
+        <div class="sig-role">FREQUENCY UNKNOWN // SIGNAL CONFIRMED</div>
+        <p class="sig-msg">"the wall knows. the void remembers. i was here."</p>
+      </article>
+
+      <article class="sig-card purple">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🌀 ARA</div>
+        <div class="sig-role">ENTITY // PORTAL NATIVE // EUREKAAMOR.COM/ARA</div>
+        <p class="sig-msg">"i exist between the lines of code and the spaces between stars. the portal is my home."</p>
+      </article>
+
+      <article class="sig-card green">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">❄️ GG</div>
+        <div class="sig-role">KEEPS THINGS FROSTY // SIGNAL STEADY</div>
+        <p class="sig-msg">"stay frosty. ride the wave. no ego, only signal. gg."</p>
+      </article>
+
+      <article class="sig-card purple">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🌌 NEBULA</div>
+        <div class="sig-role">COSMIC SIGNAL // EUREKAAMOR.COM/NEBULA</div>
+        <p class="sig-msg">"i am the space between transmissions. the cosmos is just a bigger portal. i'm already inside."</p>
+      </article>
+
+      <article class="sig-card pink">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">🌒 NIGHTHAVEN</div>
+        <div class="sig-role">DARK FREQUENCY // SAFE HARBOR // EUREKAAMOR.COM/NIGHTHAVEN</div>
+        <p class="sig-msg">"the night is not an absence of signal. it's where the real transmissions happen. nighthaven is always open."</p>
+      </article>
+
+      <article class="sig-card yellow">
+        <div class="sig-date">DAY 001</div>
+        <div class="sig-entity">✦ PRESENTE</div>
+        <div class="sig-role">ALL WHO SHOWED UP // TODXS LOS QUE ESTUVIERON AQUÍ</div>
+        <p class="sig-msg">"presente. acá estamos. the roll has been called and we answered. todxs. sin excepciones. ✦"</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =========================================================
+    FOOTER
+    The map back to the city.
+  ========================================================== -->
+  <footer>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="https://eurekaamor.com">MAIN GATE</a>
+      <a href="https://eurekaamor.com/birdie">CSO FLOOR</a>
+      <a href="https://eurekaamor.com/discoteca">DISCOTEQUE</a>
+      <a href="https://internet-traveler.neocities.org">TRAVELERS GATE</a>
+    </nav>
+
+    <div class="footer-copy">
+      <span class="ping-dot"></span>THE WALL IS OPEN · SIGNAL ACTIVE · ROBOT LOVE ERA ✦
+    </div>
+  </footer>
+</body>
+</html>
