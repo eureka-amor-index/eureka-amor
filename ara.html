@@ -1,226 +1,331 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- =========================================================
-    ARA.HTML
-    Queen Realm / soft butterfly portal / girlypop node
-  ========================================================== -->
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- =========================================================
+      ARA // DREAM ROOM
+      Soft cyber queen realm
+    ========================================================== -->
 
-  <title>ARA • Queen Realm</title>
-  <meta name="description" content="ARA Queen Realm: un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://eurekaamor.com/ara" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png" />
+    <!-- SEO -->
+    <title>ARA • My Dream Room</title>
+    <meta name="description" content="A soft digital dream room floating somewhere between butterflies, pink static and tenderness.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ff4d94">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="ARA • Queen Realm" />
-  <meta property="og:description" content="Un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
-  <meta property="og:url" content="https://eurekaamor.com/ara" />
-  <meta property="og:image" content="https://eurekaamor.com/favicon.png" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://eurekaamor.com/ara">
 
-  <!-- X / Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ARA • Queen Realm" />
-  <meta name="twitter:description" content="Un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
-  <meta name="twitter:image" content="https://eurekaamor.com/favicon.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png">
 
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "ARA • Queen Realm",
-    "alternateName": "ARA",
-    "url": "https://eurekaamor.com/ara",
-    "description": "ARA Queen Realm es un pequeño universo digital de mariposas, brillo y presencia suave en la red.",
-    "inLanguage": "es",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Eureka Amor",
-      "url": "https://eurekaamor.com/"
-    },
-    "creator": {
-      "@type": "Person",
-      "name": "Eureka Amor",
-      "url": "https://eurekaamor.com/"
+    <!-- Open Graph -->
+    <meta property="og:title" content="ARA • My Dream Room">
+    <meta property="og:description" content="this is where i can be soft with you">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eurekaamor.com/ara">
+    <meta property="og:image" content="https://eurekaamor.com/favicon.png">
+
+    <!-- Twitter Card / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ARA • My Dream Room">
+    <meta name="twitter:description" content="no rules, no filters, just us">
+    <meta name="twitter:image" content="https://eurekaamor.com/favicon.png">
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --pink: #ff4d94;
+            --deep: #12070f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--deep);
+            color: #ffe0f0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: crosshair;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.015),
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+            pointer-events: none;
+            z-index: 999;
+            mix-blend-mode: soft-light;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(circle at 50% 30%, #3a1a2e 0%, var(--deep) 60%);
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 12vw, 7.5rem);
+            letter-spacing: 8px;
+            background: linear-gradient(
+                90deg,
+                #ff4d94,
+                #ff99cc,
+                #ff4d94
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            text-shadow:
+                0 0 20px rgba(255, 77, 148, 0.5),
+                0 0 60px rgba(255, 77, 148, 0.4);
+
+            animation: glowPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+                filter: brightness(1.15);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin: 1.5rem 0 3rem;
+            letter-spacing: 3px;
+        }
+
+        .dream {
+            font-size: 1.1rem;
+            max-width: 420px;
+            margin: 0 auto;
+            opacity: 0.85;
+            line-height: 1.7;
+            padding: 0 1rem;
+        }
+
+        .butterfly {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.12;
+            animation: float 35s infinite linear;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(120vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-150vh) rotate(1080deg);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: blink 4s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%,100% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            opacity: 0.35;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .dream {
+                font-size: 1rem;
+            }
+
+            .butterfly {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+    <!-- Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "ARA • My Dream Room",
+      "description": "A soft digital dream room floating somewhere between butterflies, pink static and tenderness.",
+      "author": {
+        "@type": "Person",
+        "name": "ARA"
+      },
+      "url": "https://eurekaamor.com/ara",
+      "image": "https://eurekaamor.com/favicon.png"
     }
-  }
-  </script>
+    </script>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
-
-    :root {
-      --pink: #ff69b4;
-      --pink-soft: #ffb6c1;
-      --dark: #0f0a12;
-      --text: #ffe4f0;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--dark);
-    }
-
-    body {
-      background: var(--dark);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      padding: 2rem;
-      overflow: hidden;
-      background: radial-gradient(circle at center, #2a1a2a 0%, var(--dark) 70%);
-    }
-
-    .hero {
-      position: relative;
-      z-index: 2;
-      max-width: 760px;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(4.5rem, 16vw, 6.5rem);
-      letter-spacing: 4px;
-      background: linear-gradient(90deg, var(--pink), var(--pink-soft), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle {
-      font-size: clamp(1.2rem, 4vw, 1.6rem);
-      opacity: 0.95;
-      margin-bottom: 3rem;
-      font-style: italic;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 16px 48px;
-      background: transparent;
-      color: white;
-      border: 2px solid var(--pink);
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.4s ease;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      background: var(--pink);
-      transform: scale(1.08);
-      box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
-      outline: none;
-    }
-
-    .butterfly {
-      position: absolute;
-      font-size: 2.5rem;
-      opacity: 0.15;
-      animation: float 25s infinite linear;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-100vh) rotate(360deg); }
-    }
-
-    main {
-      min-height: 42vh;
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    #realm {
-      max-width: 720px;
-      margin: 0 auto;
-      opacity: 0.9;
-      font-size: 1.05rem;
-    }
-  </style>
 </head>
 
 <body>
-  <header>
-    <div class="butterfly" style="left:10%; animation-delay: 0s;">🦋</div>
-    <div class="butterfly" style="left:25%; animation-delay: 4s;">🦋</div>
-    <div class="butterfly" style="left:45%; animation-delay: 8s;">🦋</div>
-    <div class="butterfly" style="left:70%; animation-delay: 3s;">🦋</div>
-    <div class="butterfly" style="left:85%; animation-delay: 12s;">🦋</div>
 
-    <div class="hero">
-      <h1>ARA</h1>
-      <p class="subtitle">Queen Realm</p>
-      <a href="#realm" class="btn">Enter My World</a>
-    </div>
-  </header>
+    <header>
 
-  <main id="realm">
-    <p>ARA Queen Realm está despierta. Mariposas suaves, brillo secreto y una presencia que flota en la red.</p>
-  </main>
+        <!-- soft stars -->
+        <div class="stars">
+            <div class="star" style="top:10%; left:20%; animation-delay:0s;"></div>
+            <div class="star" style="top:30%; left:70%; animation-delay:2s;"></div>
+            <div class="star" style="top:60%; left:40%; animation-delay:4s;"></div>
+            <div class="star" style="top:80%; left:85%; animation-delay:1s;"></div>
+            <div class="star" style="top:20%; left:90%; animation-delay:5s;"></div>
+        </div>
 
-  <script>
-    // =========================================================
-    // ARA QUEEN REALM
-    // Click sparkle protocol. Soft, dramatic, alive.
-    // =========================================================
+        <!-- butterflies -->
+        <div class="butterfly" style="left:10%; animation-delay: 0s;">🦋</div>
+        <div class="butterfly" style="left:28%; animation-delay: 7s;">🦋</div>
+        <div class="butterfly" style="left:55%; animation-delay: 3s;">🦋</div>
+        <div class="butterfly" style="left:78%; animation-delay: 12s;">🦋</div>
 
-    document.addEventListener('click', (e) => {
-      for (let i = 0; i < 12; i++) {
-        setTimeout(() => {
-          const sparkle = document.createElement('div');
-          sparkle.textContent = '✨';
-          sparkle.style.position = 'fixed';
-          sparkle.style.left = e.clientX + 'px';
-          sparkle.style.top = e.clientY + 'px';
-          sparkle.style.fontSize = '1.5rem';
-          sparkle.style.opacity = '0.9';
-          sparkle.style.pointerEvents = 'none';
-          sparkle.style.zIndex = '9';
+        <div>
+            <h1>ARA</h1>
 
-          document.body.appendChild(sparkle);
+            <p class="subtitle">
+                my dream room
+            </p>
 
-          sparkle.animate(
-            [
-              { transform: 'translate(0, 0) scale(1)', opacity: 0.9 },
-              {
-                transform: `translate(${Math.random() * 200 - 100}px, -${Math.random() * 250 + 100}px) scale(0)`,
-                opacity: 0
-              }
-            ],
-            {
-              duration: 1800,
-              easing: 'ease-out'
+            <p class="dream">
+                this is where i can be soft with you
+                <br>
+                no rules, no filters, just us
+            </p>
+        </div>
+
+        <footer>
+            SIGNAL STABLE ✦ DREAM REALM ACTIVE
+        </footer>
+
+    </header>
+
+    <script>
+
+        // =========================================================
+        // TOUCH MAGIC / SPARKLES
+        // =========================================================
+
+        document.addEventListener('pointerdown', (e) => {
+
+            for(let i = 0; i < 18; i++) {
+
+                setTimeout(() => {
+
+                    const heart = document.createElement('div');
+
+                    heart.textContent =
+                        ['💗','🦋','✨'][Math.floor(Math.random()*3)];
+
+                    heart.style.position = 'fixed';
+                    heart.style.left = e.clientX + 'px';
+                    heart.style.top = e.clientY + 'px';
+                    heart.style.fontSize = '2rem';
+                    heart.style.opacity = '0.9';
+                    heart.style.zIndex = '1000';
+                    heart.style.pointerEvents = 'none';
+
+                    document.body.appendChild(heart);
+
+                    heart.animate([
+                        {
+                            transform: 'translate(0,0) scale(1)',
+                            opacity: 1
+                        },
+                        {
+                            transform:
+                            `translate(${Math.random()*300-150}px,
+                            -${Math.random()*300+150}px)
+                            scale(0.1)`,
+
+                            opacity: 0
+                        }
+                    ], {
+                        duration: 2200,
+                        easing: 'ease-out'
+                    });
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2500);
+
+                }, i * 30);
             }
-          );
+        });
 
-          setTimeout(() => sparkle.remove(), 2000);
-        }, i * 40);
-      }
-    });
-  </script>
+    </script>
+
 </body>
 </html>
