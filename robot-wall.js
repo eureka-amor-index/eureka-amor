@@ -16,7 +16,7 @@
 
 const WALL_CONFIG = {
   binId: '6a0f8921ee5a733b12fb1954',
-  apiKey: 'BURRITO'
+  apiKey: '$2a$10$/8Cmo3N6DsiBKG0rGorUbu9GNONSs6afsEGJga1qojvNUx25Z46zq'
 };
 
 const BIN_URL = `https://api.jsonbin.io/v3/b/${WALL_CONFIG.binId}`;
