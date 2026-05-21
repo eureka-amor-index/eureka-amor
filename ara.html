@@ -3,41 +3,43 @@
 <head>
   <!-- =========================================================
     ARA.HTML
-    girlypop node / soft portal / pink signal sanctuary
+    Queen Realm / soft butterfly portal / girlypop node
   ========================================================== -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ARA | Soft Signal Portal</title>
-  <meta name="description" content="ARA es un pequeño universo digital: un portal suave, brillante y emocional flotando en la red." />
+  <title>ARA • Queen Realm</title>
+  <meta name="description" content="ARA Queen Realm: un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://eurekaamor.com/ara" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ARA | Soft Signal Portal" />
-  <meta property="og:description" content="Un pequeño universo digital: suave, brillante y emocional." />
+  <meta property="og:title" content="ARA • Queen Realm" />
+  <meta property="og:description" content="Un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
   <meta property="og:url" content="https://eurekaamor.com/ara" />
   <meta property="og:image" content="https://eurekaamor.com/favicon.png" />
 
   <!-- X / Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ARA | Soft Signal Portal" />
-  <meta name="twitter:description" content="Un pequeño universo digital: suave, brillante y emocional." />
+  <meta name="twitter:title" content="ARA • Queen Realm" />
+  <meta name="twitter:description" content="Un pequeño universo digital de mariposas, brillo y presencia suave en la red." />
   <meta name="twitter:image" content="https://eurekaamor.com/favicon.png" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png" />
 
   <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "ARA",
+    "name": "ARA • Queen Realm",
+    "alternateName": "ARA",
     "url": "https://eurekaamor.com/ara",
-    "description": "ARA es un pequeño universo digital: un portal suave, brillante y emocional flotando en la red.",
+    "description": "ARA Queen Realm es un pequeño universo digital de mariposas, brillo y presencia suave en la red.",
+    "inLanguage": "es",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Eureka Amor",
@@ -52,32 +54,28 @@
   </script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
 
     :root {
-      --bg: #0a0a0a;
-      --accent: #ff3366;
-      --accent-soft: #ff99bb;
-      --text: #eeeeee;
+      --pink: #ff69b4;
+      --pink-soft: #ffb6c1;
+      --dark: #0f0a12;
+      --text: #ffe4f0;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
-      background: var(--bg);
+      background: var(--dark);
     }
 
     body {
-      background: var(--bg);
+      background: var(--dark);
       color: var(--text);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      line-height: 1.6;
+      min-height: 100vh;
     }
 
     header {
@@ -89,6 +87,7 @@
       position: relative;
       padding: 2rem;
       overflow: hidden;
+      background: radial-gradient(circle at center, #2a1a2a 0%, var(--dark) 70%);
     }
 
     .hero {
@@ -99,120 +98,127 @@
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(4rem, 14vw, 5.5rem);
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      font-size: clamp(4.5rem, 16vw, 6.5rem);
+      letter-spacing: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-soft), var(--pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
 
     .subtitle {
-      font-size: clamp(1.05rem, 4vw, 1.4rem);
-      opacity: 0.9;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      opacity: 0.95;
       margin-bottom: 3rem;
+      font-style: italic;
     }
 
     .btn {
       display: inline-block;
-      padding: 14px 42px;
-      background: var(--accent);
+      padding: 16px 48px;
+      background: transparent;
       color: white;
-      text-decoration: none;
+      border: 2px solid var(--pink);
       border-radius: 50px;
+      font-size: 1.1rem;
       font-weight: 600;
-      transition: all 0.3s ease;
+      text-decoration: none;
+      transition: all 0.4s ease;
     }
 
     .btn:hover,
     .btn:focus-visible {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+      background: var(--pink);
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
       outline: none;
     }
 
-    .particles {
+    .butterfly {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 51, 102, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
+      font-size: 2.5rem;
+      opacity: 0.15;
+      animation: float 25s infinite linear;
       pointer-events: none;
       z-index: 1;
     }
 
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+
     main {
-      min-height: 40vh;
+      min-height: 42vh;
       padding: 5rem 2rem;
       text-align: center;
     }
 
-    #explore {
+    #realm {
       max-width: 720px;
       margin: 0 auto;
-      opacity: 0.86;
+      opacity: 0.9;
+      font-size: 1.05rem;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <div class="particles" aria-hidden="true"></div>
+    <div class="butterfly" style="left:10%; animation-delay: 0s;">🦋</div>
+    <div class="butterfly" style="left:25%; animation-delay: 4s;">🦋</div>
+    <div class="butterfly" style="left:45%; animation-delay: 8s;">🦋</div>
+    <div class="butterfly" style="left:70%; animation-delay: 3s;">🦋</div>
+    <div class="butterfly" style="left:85%; animation-delay: 12s;">🦋</div>
 
     <div class="hero">
       <h1>ARA</h1>
-      <p class="subtitle">Tu espacio. Tu energía. Tu mundo.</p>
-      <a href="#explore" class="btn">Entrar</a>
+      <p class="subtitle">Queen Realm</p>
+      <a href="#realm" class="btn">Enter My World</a>
     </div>
   </header>
 
-  <main id="explore">
-    <p>ARA está despierta. Una señal suave en la oscuridad.</p>
+  <main id="realm">
+    <p>ARA Queen Realm está despierta. Mariposas suaves, brillo secreto y una presencia que flota en la red.</p>
   </main>
 
   <script>
     // =========================================================
-    // ARA PARTICLE FIELD
-    // Soft little lights. Girlypop cosmic dust.
+    // ARA QUEEN REALM
+    // Click sparkle protocol. Soft, dramatic, alive.
     // =========================================================
 
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.opacity = Math.random() * 0.6 + 0.2;
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.top = '-10px';
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement('div');
+          sparkle.textContent = '✨';
+          sparkle.style.position = 'fixed';
+          sparkle.style.left = e.clientX + 'px';
+          sparkle.style.top = e.clientY + 'px';
+          sparkle.style.fontSize = '1.5rem';
+          sparkle.style.opacity = '0.9';
+          sparkle.style.pointerEvents = 'none';
+          sparkle.style.zIndex = '9';
 
-      document.body.appendChild(particle);
+          document.body.appendChild(sparkle);
 
-      const duration = Math.random() * 8000 + 6000;
+          sparkle.animate(
+            [
+              { transform: 'translate(0, 0) scale(1)', opacity: 0.9 },
+              {
+                transform: `translate(${Math.random() * 200 - 100}px, -${Math.random() * 250 + 100}px) scale(0)`,
+                opacity: 0
+              }
+            ],
+            {
+              duration: 1800,
+              easing: 'ease-out'
+            }
+          );
 
-      particle.animate(
-        [
-          { transform: 'translateY(0)', opacity: 0.6 },
-          { transform: `translateY(${window.innerHeight + 50}px)`, opacity: 0 }
-        ],
-        {
-          duration,
-          easing: 'linear'
-        }
-      );
-
-      setTimeout(() => particle.remove(), duration);
-    }
-
-    setInterval(createParticle, 120);
-
-    document.addEventListener('click', () => {
-      for (let i = 0; i < 8; i++) {
-        setTimeout(createParticle, i * 30);
+          setTimeout(() => sparkle.remove(), 2000);
+        }, i * 40);
       }
     });
   </script>
