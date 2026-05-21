@@ -1601,3 +1601,86 @@ body.glitch .terminal{
   color: #d8d8d8;
   opacity: 0.85;
 }
+
+
+/* ── THE WALL BUTTON ── */
+.wall-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.wall-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem 2.5rem;
+  border: 1px solid rgba(255, 113, 206, 0.4);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  background: rgba(255, 113, 206, 0.03);
+  animation: wallpulse 2s ease-in-out infinite alternate;
+}
+
+.wall-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,113,206,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.wall-btn:hover {
+  border-color: rgba(255, 113, 206, 0.9);
+  background: rgba(255, 113, 206, 0.08);
+  box-shadow: 0 0 30px rgba(255, 113, 206, 0.2);
+  transform: translateY(-2px);
+}
+
+.wall-btn:hover::before { opacity: 1; }
+
+.wall-btn-signal {
+  position: absolute;
+  top: 6px; right: 10px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #05ffa1;
+  box-shadow: 0 0 6px #05ffa1;
+  animation: wallping 1.5s ease-in-out infinite;
+}
+
+.wall-btn-label {
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: #ff71ce;
+  text-shadow: 0 0 12px rgba(255,113,206,0.7);
+  letter-spacing: 0.1em;
+  animation: wallglitch 6s infinite;
+}
+
+.wall-btn-sub {
+  font-size: 10px;
+  color: rgba(255, 113, 206, 0.45);
+  letter-spacing: 0.25em;
+}
+
+@keyframes wallpulse {
+  from { border-color: rgba(255,113,206,0.3); box-shadow: none; }
+  to   { border-color: rgba(255,113,206,0.6); box-shadow: 0 0 15px rgba(255,113,206,0.1); }
+}
+
+@keyframes wallping {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.6); opacity: 0.5; }
+}
+
+@keyframes wallglitch {
+  0%,92%,100% { transform: translate(0); }
+  93% { transform: translate(-2px, 1px); color: #01cdfe; }
+  94% { transform: translate(2px, -1px); color: #fffb96; }
+  95% { transform: translate(0); color: #ff71ce; }
+}
