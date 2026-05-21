@@ -1078,4 +1078,21 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 })();
+
+
+
+// ── WALL BUTTON TRACE COUNT ──
+(function() {
+  const BIN_ID  = '6a0f8921ee5a733b12fb1954';
+  const API_KEY = '$2a$10$hqc7fRhI4LJ/8u0bSSblzO7NVqVoLvCpv16yLWNu1ivBKqe94vwUy';
+  const el = document.getElementById('wallTraceCount');
+  if (!el) return;
+  fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+    headers: { 'X-Access-Key': API_KEY }
+  })
+  .then(r => r.json())
+  .then(d => { el.textContent = (d.record.traces || []).length; })
+  .catch(() => { el.textContent = '∞'; });
+})();
+
 </script>
