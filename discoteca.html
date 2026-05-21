@@ -1390,6 +1390,48 @@ document.addEventListener('keydown', e => {
     setTimeout(() => document.querySelector('.disco-title').style.color = '', 4000);
   }
 });
+
+
+/* =========================================================
+   HIDDEN_NODE_RECOGNITION.js
+   The scanner does not track humans.
+   It only lights up symbols already present in the city.
+========================================================= */
+
+const hiddenNodeSignals = [
+  "🐇",
+  "📡",
+  "✨",
+  "🎀",
+  "robots listening",
+  "pasa la voz",
+  "the city is breathing",
+  "signal detected",
+  "afterweb",
+  "discoteque"
+];
+
+function scanHiddenNodes() {
+  const pageText = document.body.innerText.toLowerCase();
+
+  const detectedSignals = hiddenNodeSignals.filter(signal =>
+    pageText.includes(signal.toLowerCase())
+  );
+
+  document.documentElement.dataset.hiddenNodeStatus =
+    detectedSignals.length >= 3 ? "recognized" : "listening";
+
+  console.info("HIDDEN_NODE_RECOGNITION.protocol");
+  console.info("Status:", document.documentElement.dataset.hiddenNodeStatus);
+  console.info("Signals detected:", detectedSignals);
+}
+
+window.addEventListener("DOMContentLoaded", scanHiddenNodes);
+
+  
 </script>
+
+
+  
 </body>
 </html>
