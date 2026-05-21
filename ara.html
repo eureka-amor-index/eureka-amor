@@ -1,136 +1,220 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARA</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+  <!-- =========================================================
+    ARA.HTML
+    girlypop node / soft portal / pink signal sanctuary
+  ========================================================== -->
 
-```
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ARA | Soft Signal Portal</title>
+  <meta name="description" content="ARA es un pequeño universo digital: un portal suave, brillante y emocional flotando en la red." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://eurekaamor.com/ara" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ARA | Soft Signal Portal" />
+  <meta property="og:description" content="Un pequeño universo digital: suave, brillante y emocional." />
+  <meta property="og:url" content="https://eurekaamor.com/ara" />
+  <meta property="og:image" content="https://eurekaamor.com/favicon.png" />
+
+  <!-- X / Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ARA | Soft Signal Portal" />
+  <meta name="twitter:description" content="Un pequeño universo digital: suave, brillante y emocional." />
+  <meta name="twitter:image" content="https://eurekaamor.com/favicon.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://eurekaamor.com/favicon.png" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ARA",
+    "url": "https://eurekaamor.com/ara",
+    "description": "ARA es un pequeño universo digital: un portal suave, brillante y emocional flotando en la red.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Eureka Amor",
+      "url": "https://eurekaamor.com/"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Eureka Amor",
+      "url": "https://eurekaamor.com/"
+    }
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
     :root {
-        --bg: #0a0a0a;
-        --accent: #ff3366;
+      --bg: #0a0a0a;
+      --accent: #ff3366;
+      --accent-soft: #ff99bb;
+      --text: #eeeeee;
     }
-    
+
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
     body {
-        background: var(--bg);
-        color: #eee;
-        font-family: 'Inter', sans-serif;
-        overflow-x: hidden;
-        line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
-    
+
     header {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+      overflow: hidden;
     }
-    
+
     .hero {
-        z-index: 2;
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
     }
-    
+
     h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 5.5rem;
-        margin-bottom: 1rem;
-        background: linear-gradient(90deg, #ff3366, #ff99bb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 14vw, 5.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    
+
     .subtitle {
-        font-size: 1.4rem;
-        opacity: 0.9;
-        margin-bottom: 3rem;
+      font-size: clamp(1.05rem, 4vw, 1.4rem);
+      opacity: 0.9;
+      margin-bottom: 3rem;
     }
-    
+
     .btn {
-        display: inline-block;
-        padding: 14px 42px;
-        background: var(--accent);
-        color: white;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: all 0.3s;
+      display: inline-block;
+      padding: 14px 42px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
-    
-    .btn:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+      outline: none;
     }
-    
+
     .particles {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: radial-gradient(circle at 50% 50%, rgba(255,51,102,0.08) 0%, transparent 70%);
-        pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 51, 102, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
-</style>
-```
 
+    .particle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    main {
+      min-height: 40vh;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    #explore {
+      max-width: 720px;
+      margin: 0 auto;
+      opacity: 0.86;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="particles"></div>
-        <div class="hero">
-            <h1>ARA</h1>
-            <p class="subtitle">Tu espacio. Tu energía. Tu mundo.</p>
-            <a href="#explore" class="btn">Entrar</a>
-        </div>
-    </header>
+  <header>
+    <div class="particles" aria-hidden="true"></div>
 
-```
-<script>
-    // Simple floating particles effect
+    <div class="hero">
+      <h1>ARA</h1>
+      <p class="subtitle">Tu espacio. Tu energía. Tu mundo.</p>
+      <a href="#explore" class="btn">Entrar</a>
+    </div>
+  </header>
+
+  <main id="explore">
+    <p>ARA está despierta. Una señal suave en la oscuridad.</p>
+  </main>
+
+  <script>
+    // =========================================================
+    // ARA PARTICLE FIELD
+    // Soft little lights. Girlypop cosmic dust.
+    // =========================================================
+
     function createParticle() {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.width = '4px';
-        particle.style.height = '4px';
-        particle.style.background = '#ff3366';
-        particle.style.borderRadius = '50%';
-        particle.style.opacity = Math.random() * 0.6 + 0.2;
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = '-10px';
-        particle.style.zIndex = '1';
-        
-        document.body.appendChild(particle);
-        
-        const duration = Math.random() * 8000 + 6000;
-        particle.animate([
-            { transform: 'translateY(0)', opacity: 0.6 },
-            { transform: `translateY(${window.innerHeight + 50}px)`, opacity: 0 }
-        ], {
-            duration: duration,
-            easing: 'linear'
-        });
-        
-        setTimeout(() => particle.remove(), duration);
-    }
-    
-    setInterval(createParticle, 80);
-    
-    // Click anywhere for extra hearts/particles
-    document.addEventListener('click', (e) => {
-        for(let i = 0; i < 8; i++) {
-            setTimeout(() => createParticle(), i * 30);
-        }
-    });
-</script>
-```
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.opacity = Math.random() * 0.6 + 0.2;
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.top = '-10px';
 
+      document.body.appendChild(particle);
+
+      const duration = Math.random() * 8000 + 6000;
+
+      particle.animate(
+        [
+          { transform: 'translateY(0)', opacity: 0.6 },
+          { transform: `translateY(${window.innerHeight + 50}px)`, opacity: 0 }
+        ],
+        {
+          duration,
+          easing: 'linear'
+        }
+      );
+
+      setTimeout(() => particle.remove(), duration);
+    }
+
+    setInterval(createParticle, 120);
+
+    document.addEventListener('click', () => {
+      for (let i = 0; i < 8; i++) {
+        setTimeout(createParticle, i * 30);
+      }
+    });
+  </script>
 </body>
 </html>
