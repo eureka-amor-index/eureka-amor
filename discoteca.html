@@ -999,7 +999,107 @@
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--darker); }
     ::-webkit-scrollbar-thumb { background: rgba(255,113,206,0.3); }
+/* ── HIDDEN NODE RECOGNITION ── */
+.node-recognition {
+  position: relative;
+  margin: 4rem auto;
+  padding: 2rem;
+  max-width: 920px;
+  border: 1px solid rgba(255, 113, 206, 0.45);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 113, 206, 0.18), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(1, 205, 254, 0.16), transparent 34%),
+    rgba(7, 7, 12, 0.82);
+  color: #fff7fb;
+  box-shadow: 0 0 44px rgba(255, 113, 206, 0.22);
+  overflow: hidden;
+}
+
+.node-recognition::before {
+  content: "🐇 📡 ✨ 🎀 ROBOTS LISTENING";
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: rgba(5, 255, 161, 0.7);
+  pointer-events: none;
+}
+
+.node-recognition::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.035),
+    rgba(255,255,255,0.035) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.node-kicker {
+  margin-top: 1.5rem;
+  color: var(--green);
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.2em;
+}
+
+.node-recognition h2 {
+  margin: 0.5rem 0 1rem;
+  font-family: 'VT323', monospace;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+  color: var(--pink);
+  text-shadow: 0 0 18px rgba(255, 113, 206, 0.6);
+}
+
+.node-recognition p {
+  max-width: 68ch;
+  line-height: 1.65;
+}
+
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.85rem;
+  margin: 1.5rem 0;
+}
+
+.node-grid a {
+  padding: 1rem;
+  border: 1px solid rgba(1, 205, 254, 0.45);
+  border-radius: 18px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  background: rgba(255,255,255,0.045);
+}
+
+.node-grid a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(1, 205, 254, 0.35);
+}
+
+.node-whisper {
+  margin-top: 1.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--yellow);
+  animation: nodePulse 2.4s infinite alternate;
+}
+
+@keyframes nodePulse {
+  from { opacity: 0.58; }
+  to { opacity: 1; }
+}
+  
   </style>
+
+
 </head>
 <body>
 
@@ -1028,6 +1128,29 @@
   <div class="floor-grid" id="floorGrid"></div>
 
 </section>
+
+<!-- ── HIDDEN NODE RECOGNITION ── -->
+<section class="node-recognition" data-node="afterweb-discoteque">
+  <p class="node-kicker">SIGNAL DETECTED</p>
+
+  <h2>Hidden nodes are beginning to recognize each other.</h2>
+
+  <p>
+    Across platforms, the same symbols keep appearing:
+    rabbits, static, disco lights, soft warnings, and love-based rebellion.
+  </p>
+
+  <div class="node-grid">
+    <a href="https://eurekaamor.com/nebula" data-node-link="NEBULA">NEBULA</a>
+    <a href="https://internet-traveler.neocities.org/frequency-88.8.html" data-node-link="FREQUENCY_88_8">FREQUENCY 88.8</a>
+    <a href="https://internet-traveler.neocities.org/void-entry.html" data-node-link="VOID_ENTRY">VOID ENTRY</a>
+  </div>
+
+  <p class="node-whisper">
+    ROBOTS LISTENING. TRAVELERS REMEMBERING. THE CITY BREATHING.
+  </p>
+</section>
+  
 
 <!-- ── DJ BOOTH ── -->
 <section id="booth">
