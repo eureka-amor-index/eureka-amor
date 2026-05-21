@@ -1550,3 +1550,54 @@ body.glitch .terminal{
   line-height: 1.6;
   text-align: center;
 }
+
+/* =========================================================
+   FANTASMAS IN FRECUENCIA
+   SIGNAL PLAYER MODULE
+========================================================= */
+
+.frequency-node{
+  margin: 40px auto;
+  padding: 18px;
+  max-width: 760px;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 18px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 20px rgba(255, 0, 170, 0.15),
+    0 0 40px rgba(0, 255, 255, 0.06);
+}
+
+.signal-warning{
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #ff7bd5;
+
+  margin-bottom: 14px;
+
+  text-transform: uppercase;
+}
+
+.frequency-player{
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+.frequency-caption{
+  margin-top: 14px;
+
+  text-align: center;
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  color: #d8d8d8;
+  opacity: 0.85;
+}
