@@ -5,21 +5,44 @@
   DEVTOOLS NOTE:
   Current public placeholder is BURRITO.
   For true shadow mode, move the key to a serverless endpoint.
-  Public frontend keys are visible through DevTools / view-source.
+
+  EMERGENCY PATCH:
+  JSONBin 401 was caused by sending a Master Key as X-Access-Key.
+  We now send it as X-Master-Key.
 ========================================================== */
 
 /* =========================================================
   CONFIG
-  Replace BURRITO manually with the scoped wall key only if you
-  accept frontend-key mode.
+  IMPORTANT:
+  This is frontend-key mode. It works fast, but the key is visible
+  through DevTools / view-source.
+
+  Weekend shadow mode:
+  move this into a serverless endpoint.
 ========================================================== */
 
 const WALL_CONFIG = {
   binId: '6a0f8921ee5a733b12fb1954',
-  apiKey: '$2a$10$/8Cmo3N6DsiBKG0rGorUbu9GNONSs6afsEGJga1qojvNUx25Z46zq'
+
+  /* Keep your existing key here locally.
+     Since it was exposed in public/frontend space, rotate it later. */
+  apiKey: 'PASTE_YOUR_JSONBIN_MASTER_KEY_HERE'
 };
 
 const BIN_URL = `https://api.jsonbin.io/v3/b/${WALL_CONFIG.binId}`;
+
+/* =========================================================
+  AUTH HEADERS
+  The old bug was using X-Access-Key.
+  This key format needs X-Master-Key.
+========================================================== */
+
+function getAuthHeaders(extraHeaders = {}) {
+  return {
+    'X-Master-Key': WALL_CONFIG.apiKey,
+    ...extraHeaders
+  };
+}
 
 /* =========================================================
   DOM REFERENCES
@@ -44,9 +67,9 @@ const els = {
 async function loadTraces() {
   try {
     const res = await fetch(BIN_URL, {
-      headers: {
-        'X-Access-Key': WALL_CONFIG.apiKey
-      }
+      method: 'GET',
+      cache: 'no-store',
+      headers: getAuthHeaders()
     });
 
     if (!res.ok) {
@@ -56,14 +79,16 @@ async function loadTraces() {
     const data = await res.json();
     const traces = Array.isArray(data?.record?.traces) ? data.record.traces : [];
 
-    els.traceCount.textContent = traces.length;
+    if (els.traceCount) els.traceCount.textContent = traces.length;
     renderTraces(traces);
   } catch (error) {
     console.warn('[ROBOT-WALL] Signal retrieval failed:', error);
 
-    els.traceCount.textContent = '!';
-    els.tracesGrid.innerHTML =
-      '<div class="traces-empty">// could not reach the signal · try again later</div>';
+    if (els.traceCount) els.traceCount.textContent = '!';
+    if (els.tracesGrid) {
+      els.tracesGrid.innerHTML =
+        '<div class="traces-empty">// wall archive temporarily sealed · founding signals still active below //</div>';
+    }
   }
 }
 
@@ -73,6 +98,8 @@ async function loadTraces() {
 ========================================================== */
 
 function renderTraces(traces) {
+  if (!els.tracesGrid) return;
+
   if (!traces.length) {
     els.tracesGrid.innerHTML =
       '<div class="traces-empty">// no traces yet · be the first to leave your signal 📡</div>';
@@ -118,9 +145,9 @@ async function submitTrace(event) {
 
   try {
     const getRes = await fetch(BIN_URL, {
-      headers: {
-        'X-Access-Key': WALL_CONFIG.apiKey
-      }
+      method: 'GET',
+      cache: 'no-store',
+      headers: getAuthHeaders()
     });
 
     if (!getRes.ok) {
@@ -141,10 +168,9 @@ async function submitTrace(event) {
 
     const putRes = await fetch(BIN_URL, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Key': WALL_CONFIG.apiKey
-      },
+      headers: getAuthHeaders({
+        'Content-Type': 'application/json'
+      }),
       body: JSON.stringify({ traces })
     });
 
@@ -156,12 +182,12 @@ async function submitTrace(event) {
 
     els.name.value = '';
     els.msg.value = '';
-    els.traceCount.textContent = traces.length;
+    if (els.traceCount) els.traceCount.textContent = traces.length;
 
     renderTraces(traces);
   } catch (error) {
     console.warn('[ROBOT-WALL] Transmission failed:', error);
-    setStatus('err', '// transmission failed · signal lost · try again');
+    setStatus('err', '// transmission failed · signal lost · check JSONBin key/header');
   } finally {
     els.submitBtn.disabled = false;
   }
@@ -172,6 +198,7 @@ async function submitTrace(event) {
 ========================================================== */
 
 function setStatus(type, message) {
+  if (!els.status) return;
   els.status.className = `form-status ${type}`;
   els.status.textContent = message;
 }
