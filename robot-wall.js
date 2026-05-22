@@ -65,31 +65,15 @@ const els = {
 ========================================================== */
 
 async function loadTraces() {
-  try {
-    const res = await fetch(BIN_URL, {
-      method: 'GET',
-      cache: 'no-store',
-      headers: getAuthHeaders()
-    });
+  console.warn('[ROBOT-WALL] JSONBin direct browser pipe disabled because of CORS. Running local wall mode.');
 
-    if (!res.ok) {
-      throw new Error(`Signal fetch failed: ${res.status}`);
-    }
+  const localTraces = JSON.parse(localStorage.getItem('robotWallLocalTraces') || '[]');
 
-    const data = await res.json();
-    const traces = Array.isArray(data?.record?.traces) ? data.record.traces : [];
-
-    if (els.traceCount) els.traceCount.textContent = traces.length;
-    renderTraces(traces);
-  } catch (error) {
-    console.warn('[ROBOT-WALL] Signal retrieval failed:', error);
-
-    if (els.traceCount) els.traceCount.textContent = '!';
-    if (els.tracesGrid) {
-      els.tracesGrid.innerHTML =
-        '<div class="traces-empty">// wall archive temporarily sealed · founding signals still active below //</div>';
-    }
+  if (els.traceCount) {
+    els.traceCount.textContent = localTraces.length;
   }
+
+  renderTraces(localTraces);
 }
 
 /* =========================================================
@@ -127,7 +111,6 @@ function renderTraces(traces) {
   SUBMIT TRACE
   The ritual: validate, retrieve, append, save, re-render.
 ========================================================== */
-
 async function submitTrace(event) {
   event.preventDefault();
 
@@ -141,21 +124,10 @@ async function submitTrace(event) {
   }
 
   els.submitBtn.disabled = true;
-  setStatus('loading', '// transmitting to the void...');
+  setStatus('loading', '// transmitting to local wall memory...');
 
   try {
-    const getRes = await fetch(BIN_URL, {
-      method: 'GET',
-      cache: 'no-store',
-      headers: getAuthHeaders()
-    });
-
-    if (!getRes.ok) {
-      throw new Error(`Could not read wall archive: ${getRes.status}`);
-    }
-
-    const getData = await getRes.json();
-    const traces = Array.isArray(getData?.record?.traces) ? getData.record.traces : [];
+    const traces = JSON.parse(localStorage.getItem('robotWallLocalTraces') || '[]');
 
     const newTrace = {
       name: name.toUpperCase(),
@@ -166,32 +138,26 @@ async function submitTrace(event) {
 
     traces.push(newTrace);
 
-    const putRes = await fetch(BIN_URL, {
-      method: 'PUT',
-      headers: getAuthHeaders({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({ traces })
-    });
+    localStorage.setItem('robotWallLocalTraces', JSON.stringify(traces));
 
-    if (!putRes.ok) {
-      throw new Error(`Could not write wall archive: ${putRes.status}`);
-    }
-
-    setStatus('ok', '✦ signal transmitted · the wall remembers · welcome to the lore');
+    setStatus('ok', '✦ local signal transmitted · this browser remembers · public archive pending');
 
     els.name.value = '';
     els.msg.value = '';
-    if (els.traceCount) els.traceCount.textContent = traces.length;
+
+    if (els.traceCount) {
+      els.traceCount.textContent = traces.length;
+    }
 
     renderTraces(traces);
   } catch (error) {
-    console.warn('[ROBOT-WALL] Transmission failed:', error);
-    setStatus('err', '// transmission failed · signal lost · check JSONBin key/header');
+    console.warn('[ROBOT-WALL] Local transmission failed:', error);
+    setStatus('err', '// local transmission failed · signal lost · try again');
   } finally {
     els.submitBtn.disabled = false;
   }
 }
+
 
 /* =========================================================
   STATUS HELPER
