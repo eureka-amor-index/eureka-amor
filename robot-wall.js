@@ -26,7 +26,7 @@ const WALL_CONFIG = {
 
   /* Keep your existing key here locally.
      Since it was exposed in public/frontend space, rotate it later. */
-  apiKey: 'PASTE_YOUR_JSONBIN_MASTER_KEY_HERE'
+  apiKey: '$2a$10$/8Cmo3N6DsiBKG0rGorUbu9GNONSs6afsEGJga1qojvNUx25Z46zq'
 };
 
 const BIN_URL = `https://api.jsonbin.io/v3/b/${WALL_CONFIG.binId}`;
