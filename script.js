@@ -1097,8 +1097,40 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 /* =========================================================
-   ATLAS.EXE BRIDGE PING
+   ATLAS.EXE BRIDGE PING + BYTE BIT BEAT
 ========================================================= */
+
+function playAtlasBridgeChime() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  const audio = new AudioContext();
+
+  const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6
+  const now = audio.currentTime;
+
+  notes.forEach(function (freq, index) {
+    const osc = audio.createOscillator();
+    const gain = audio.createGain();
+
+    osc.type = "square";
+    osc.frequency.setValueAtTime(freq, now + index * 0.08);
+
+    gain.gain.setValueAtTime(0.0001, now + index * 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.06, now + index * 0.08 + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.08 + 0.11);
+
+    osc.connect(gain);
+    gain.connect(audio.destination);
+
+    osc.start(now + index * 0.08);
+    osc.stop(now + index * 0.08 + 0.12);
+  });
+
+  setTimeout(function () {
+    audio.close();
+  }, 900);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   const atlasBtn = document.querySelector(".atlas-bridge-btn");
@@ -1109,6 +1141,8 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const atlasUrl = atlasBtn.href;
+
+    playAtlasBridgeChime();
 
     const ping = document.createElement("div");
     ping.textContent = "ATLAS.EXE BRIDGE OPENING...";
