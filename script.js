@@ -1087,6 +1087,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_KEY = '$2a$10$hqc7fRhI4LJ/8u0bSSblzO7NVqVoLvCpv16yLWNu1ivBKqe94vwUy';
   const el = document.getElementById('wallTraceCount');
   if (!el) return;
+
   fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     headers: { 'X-Access-Key': API_KEY }
   })
@@ -1094,7 +1095,6 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(d => { el.textContent = (d.record.traces || []).length; })
   .catch(() => { el.textContent = '∞'; });
 })();
-{
 
 /* =========================================================
    ATLAS.EXE BRIDGE PING
@@ -1121,6 +1121,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 900);
   });
 });
-   
-
-
