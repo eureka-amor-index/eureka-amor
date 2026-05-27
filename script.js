@@ -1038,7 +1038,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
-<script>
+
 /* ==========================================================
    AFTERWEB COUNTDOWN ENGINE
    Target: 04 SEP 2026 // 00:00 UTC
@@ -1122,4 +1122,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1800);
   });
 });
-</script>
+
