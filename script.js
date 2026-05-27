@@ -1098,10 +1098,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
    
-</script>
 
-
-   <script>
 /* =========================================================
    ATLAS.EXE BRIDGE PING
    tiny farewell spark before opening the external node
