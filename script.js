@@ -1096,12 +1096,8 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 {
 
-
-   
-
 /* =========================================================
    ATLAS.EXE BRIDGE PING
-   tiny farewell spark before opening the external node
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -1109,17 +1105,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!atlasBtn) return;
 
-  atlasBtn.addEventListener("click", function () {
-    const ping = document.createElement("div");
+  atlasBtn.addEventListener("click", function (event) {
+    event.preventDefault();
 
+    const atlasUrl = atlasBtn.href;
+
+    const ping = document.createElement("div");
     ping.textContent = "ATLAS.EXE BRIDGE OPENING...";
     ping.className = "atlas-bridge-ping";
-
     document.body.appendChild(ping);
 
-    setTimeout(() => {
+    setTimeout(function () {
+      window.open(atlasUrl, "_blank", "noopener,noreferrer");
       ping.remove();
-    }, 1800);
+    }, 900);
   });
 });
+   
+
 
